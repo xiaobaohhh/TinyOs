@@ -1,0 +1,23 @@
+"filename", "language", "C", "LinkerScript", "x86 and x86_64 Assembly", "C++", "CMake", "comment", "blank", "total"
+"e:\ubuntu\diy-x86os\start\start\source\boot\CMakeLists.txt", "CMake", 0, 0, 0, 0, 15, 0, 4, 19
+"e:\ubuntu\diy-x86os\start\start\source\boot\boot.c", "C", 6, 0, 0, 0, 0, 14, 4, 24
+"e:\ubuntu\diy-x86os\start\start\source\boot\boot.h", "C++", 0, 0, 0, 3, 0, 10, 2, 15
+"e:\ubuntu\diy-x86os\start\start\source\boot\start.S", "x86 and x86_64 Assembly", 0, 0, 40, 0, 0, 0, 6, 46
+"e:\ubuntu\diy-x86os\start\start\source\comm\boot_info.h", "C++", 0, 0, 0, 14, 0, 0, 7, 21
+"e:\ubuntu\diy-x86os\start\start\source\comm\cpu_instr.h", "C++", 0, 0, 0, 55, 0, 0, 7, 62
+"e:\ubuntu\diy-x86os\start\start\source\comm\elf.h", "C++", 0, 0, 0, 43, 0, 2, 13, 58
+"e:\ubuntu\diy-x86os\start\start\source\comm\types.h", "C++", 0, 0, 0, 7, 0, 0, 2, 9
+"e:\ubuntu\diy-x86os\start\start\source\kernel\CMakeLists.txt", "CMake", 0, 0, 0, 0, 15, 0, 3, 18
+"e:\ubuntu\diy-x86os\start\start\source\kernel\cpu\cpu.c", "C", 39, 0, 0, 0, 0, 0, 6, 45
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\cpu\cpu.h", "C++", 0, 0, 0, 36, 0, 0, 10, 46
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\os_cfg.h", "C++", 0, 0, 0, 7, 0, 0, 3, 10
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\init.c", "C", 11, 0, 0, 0, 0, 0, 4, 15
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\init.h", "C++", 0, 0, 0, 3, 0, 0, 5, 8
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\start.S", "x86 and x86_64 Assembly", 0, 0, 24, 0, 0, 0, 8, 32
+"e:\ubuntu\diy-x86os\start\start\source\kernel\kernel.lds", "LinkerScript", 0, 16, 0, 0, 0, 0, 3, 19
+"e:\ubuntu\diy-x86os\start\start\source\loader\CMakeLists.txt", "CMake", 0, 0, 0, 0, 15, 0, 3, 18
+"e:\ubuntu\diy-x86os\start\start\source\loader\loader.h", "C++", 0, 0, 0, 17, 0, 0, 8, 25
+"e:\ubuntu\diy-x86os\start\start\source\loader\loader_16.c", "C", 67, 0, 0, 0, 0, 0, 13, 80
+"e:\ubuntu\diy-x86os\start\start\source\loader\loader_32.c", "C", 69, 0, 0, 0, 0, 0, 6, 75
+"e:\ubuntu\diy-x86os\start\start\source\loader\start.S", "x86 and x86_64 Assembly", 0, 0, 29, 0, 0, 0, 6, 35
+"Total", "-", 192, 16, 93, 185, 45, 26, 123, 680

@@ -1,0 +1,14 @@
+{
+    "serialMonitor.serialPorts": [
+        {
+            "name": "QEMU Serial",
+            "path": "tcp://localhost:23456",
+            "baudRate": 115200,
+            "dataBits": 8,
+            "parity": "none",
+            "stopBits": 1,
+            "encoding": "utf8",
+            "autoOpen": false
+        }
+    ]
+} 

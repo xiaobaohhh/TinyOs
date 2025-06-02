@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"irq.h": "c",
+			"log.h": "c",
+			"task.h": "c"
+		}
+	}
+}

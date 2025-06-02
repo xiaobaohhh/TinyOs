@@ -1,0 +1,231 @@
+#include "core/task.h"
+#include "tools/klib.h"
+#include "os_cfg.h"
+#include "cpu/cpu.h"
+#include "tools/log.h"
+#include "comm/cpu_instr.h"
+#include "cpu/irq.h"
+static task_manager_t task_manager;
+int need_reschedule = 0;
+static int tss_init(task_t *task,uint32_t entry,uint32_t esp)
+{
+    int tss_sel = gdt_alloc_desc();
+    if(tss_sel == -1)
+    {
+        log_printf("tss_init: gdt_alloc_desc failed\n");
+        return -1;
+    }
+    segment_desc_set(tss_sel,(uint32_t)&task->tss,sizeof(tss_t),
+        SEG_P_PRESENT | SEG_DPL_0 | SEG_TYPE_TSS);
+    kernel_memset(&task->tss,0,sizeof(tss_t));
+    task->tss.eip = entry;
+    task->tss.esp = task->tss.esp0 = esp;
+    task->tss.ss = task->tss.ss0 = KERNEL_SELECTOR_DS;
+    task->tss.es = task->tss.ds = task->tss.fs = task->tss.gs = KERNEL_SELECTOR_DS;
+    task->tss.cs = KERNEL_SELECTOR_CS;
+    task->tss.eflags = EFLAGS_DEFAULT | EFLAGS_IF;
+    task->tss_sel = tss_sel;
+    return 0;
+}
+int task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
+{
+    ASSERT(task != (task *)0);
+    //tss_init(task,entry,esp);
+    uint32_t * pesp = (uint32_t *)esp;
+    if(pesp)
+    {
+       *(--pesp) = entry;              // 任务入口地址
+        *(--pesp) = 0;                  // ebp
+        *(--pesp) = 0;                  // ebx
+        *(--pesp) = 0;                  // esi
+        *(--pesp) = 0;                  // edi
+        *(--pesp) = EFLAGS_DEFAULT | EFLAGS_IF; // EFLAGS，允许中断
+        task->stack = pesp;
+    }
+    kernel_strncpy(task->name,name,TASK_NAME_SIZE);
+    task->time_ticks = TASK_TIME_SLICE_DEFAULT;
+    task->slice_ticks = task->time_ticks;
+    task->sleep_ticks = 0;
+    task->state = TASK_CREATED;
+    list_node_init(&task->run_node);
+    list_node_init(&task->all_node);
+
+    irq_state_t state = irq_enter_protection();
+    task_set_ready(task);
+    list_insert_last(&task_manager.task_list,&task->all_node);
+    irq_leave_protection(state);
+    return 0;
+}
+void simple_switch(uint32_t ** from,uint32_t *to);
+void interrupt_switch(uint32_t ** from,uint32_t *to);
+void task_switch_from_to(task_t *from,task_t * to)
+{
+    //switch_to_tss(to->tss_sel);
+    interrupt_switch(&from->stack,to->stack);
+}
+
+void task_manager_init()
+{
+    list_init(&task_manager.ready_list);
+    list_init(&task_manager.task_list);
+    list_init(&task_manager.sleep_list);
+
+    task_manager.current_task = (task_t *)0;
+    task_manager.from_task = (task_t *)0;
+    task_manager.to_task = (task_t *)0;
+    task_manager.need_reschedule = TASK_NOT_NEED_RESCHEDULE ;
+}
+
+void task_first_init()
+{
+    
+    task_init(&task_manager.first_task,"first_task",0,0);
+    write_tr(task_manager.first_task.tss_sel);
+    task_manager.current_task = &task_manager.first_task;
+}
+task_t * get_from_task()
+{
+    return task_manager.from_task;
+}
+task_t * get_to_task()
+{
+    return task_manager.to_task;
+}
+uint32_t task_is_need_reschedule()
+{
+    return task_manager.need_reschedule;
+}
+task_t * task_first_task()
+{
+    return &task_manager.first_task;
+}
+
+void task_set_ready(task_t *task)
+{
+    list_insert_last(&task_manager.ready_list,&task->run_node);
+    task->state = TASK_READY;
+}
+
+void task_set_block(task_t *task)
+{
+    list_remove(&task_manager.ready_list,&task->run_node);
+}
+
+task_t * task_current()
+{
+    return task_manager.current_task;
+}
+int sys_sched_yield()
+{
+    irq_state_t state = irq_enter_protection();
+    if(list_count(&task_manager.ready_list) > 1)
+    {
+        task_t * current_task = task_current();
+        task_set_block(current_task);
+        task_set_ready(current_task);
+
+        task_dispatch();
+    }
+    irq_leave_protection(state);
+    return 0;
+}
+
+task_t * task_next_run()
+{
+    list_node_t * node = list_first(&task_manager.ready_list);
+    if(node)
+    {
+        return list_node_parent(node,task_t,run_node);
+    }
+    return (task_t *)0;
+}
+void task_dispatch()
+{
+    irq_state_t state = irq_enter_protection();
+    task_t * next_task = task_next_run();
+    if(next_task != task_current())
+    {
+        task_t * from = task_current();
+        task_manager.current_task = next_task;
+        next_task->state = TASK_RUNNING;
+        task_manager.need_reschedule = TASK_NEED_RESCHEDULE;
+        task_manager.from_task = from;
+        task_manager.to_task = next_task;
+    }
+    irq_leave_protection(state);
+}
+
+void task_time_tick()
+{
+    list_node_t * curr = list_first(&task_manager.sleep_list);
+    while(curr)
+    {
+        list_node_t * next = list_node_next(curr);
+        task_t * task = list_node_parent(curr,task_t,run_node);
+        task->sleep_ticks--;
+        if(task->sleep_ticks <= 0)
+        {
+            task_set_wakeup(task);
+            task_set_ready(task);
+        }
+        curr = next;
+    }
+    if(task_manager.need_reschedule)
+    {
+        return; 
+    }
+    task_t * current_task = task_current();
+    current_task->slice_ticks--;
+    if(current_task->slice_ticks <= 0)
+    {
+        current_task->slice_ticks = current_task->time_ticks;
+        task_set_block(current_task);
+        task_set_ready(current_task);
+        task_dispatch();
+    }
+}
+void do_schedule_switch(void)
+{
+    if (task_manager.need_reschedule) {
+        task_manager.need_reschedule = TASK_NOT_NEED_RESCHEDULE;
+        if (task_manager.from_task && task_manager.from_task != task_manager.to_task) {
+            // 在这里进行任务切换
+            // 使用简单的栈切换，避免复杂的中断上下文切换
+            simple_switch(&task_manager.from_task->stack, task_manager.to_task->stack);
+        }
+    }
+}
+
+void task_set_sleep(task_t *task,uint32_t ticks)
+{
+    if(ticks == 0)
+    {
+        return;
+    }
+    task->sleep_ticks = ticks;
+    task->state = TASK_SLEEP;
+    list_insert_last(&task_manager.sleep_list,&task->run_node);
+}
+
+void task_set_wakeup(task_t *task)
+{
+    list_remove(&task_manager.sleep_list,&task->run_node);
+
+    //task->state = TASK_READY;
+}
+
+void sys_sleep(uint32_t ms)
+{
+    irq_state_t state = irq_enter_protection();
+
+    
+    task_set_block(task_current());
+
+    task_set_sleep(task_current(),(ms + (OS_TICK_MS - 1)) / OS_TICK_MS);
+
+    task_dispatch();
+    do_schedule_switch();
+    irq_leave_protection(state);
+}
+
+
