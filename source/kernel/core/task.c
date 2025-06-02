@@ -7,6 +7,7 @@
 #include "cpu/irq.h"
 static task_manager_t task_manager;
 int need_reschedule = 0;
+static uint32_t idle_task_stack[1024];
 static int tss_init(task_t *task,uint32_t entry,uint32_t esp)
 {
     int tss_sel = gdt_alloc_desc();
@@ -49,7 +50,7 @@ int task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
     task->state = TASK_CREATED;
     list_node_init(&task->run_node);
     list_node_init(&task->all_node);
-
+    list_node_init(&task->wait_node);
     irq_state_t state = irq_enter_protection();
     task_set_ready(task);
     list_insert_last(&task_manager.task_list,&task->all_node);
@@ -63,7 +64,13 @@ void task_switch_from_to(task_t *from,task_t * to)
     //switch_to_tss(to->tss_sel);
     interrupt_switch(&from->stack,to->stack);
 }
-
+static void idle_task_entry(void)
+{
+    while(1)
+    {
+        hlt();
+    }
+}
 void task_manager_init()
 {
     list_init(&task_manager.ready_list);
@@ -74,6 +81,8 @@ void task_manager_init()
     task_manager.from_task = (task_t *)0;
     task_manager.to_task = (task_t *)0;
     task_manager.need_reschedule = TASK_NOT_NEED_RESCHEDULE ;
+
+    task_init(&task_manager.idle_task,"idle_task",idle_task_entry,(uint32_t)&idle_task_stack[1024]);
 }
 
 void task_first_init()
@@ -102,12 +111,20 @@ task_t * task_first_task()
 
 void task_set_ready(task_t *task)
 {
+    if(task == &task_manager.idle_task)
+    {
+        return;
+    }
     list_insert_last(&task_manager.ready_list,&task->run_node);
     task->state = TASK_READY;
 }
 
 void task_set_block(task_t *task)
 {
+    if(task == &task_manager.idle_task)
+    {
+        return;
+    }
     list_remove(&task_manager.ready_list,&task->run_node);
 }
 
@@ -132,12 +149,22 @@ int sys_sched_yield()
 
 task_t * task_next_run()
 {
+    if(list_count(&task_manager.ready_list) == 0)
+    {
+        return &task_manager.idle_task;
+    }
     list_node_t * node = list_first(&task_manager.ready_list);
     if(node)
     {
         return list_node_parent(node,task_t,run_node);
     }
     return (task_t *)0;
+}
+
+void schedule_switch()
+{
+    task_dispatch();
+    do_schedule_switch();
 }
 void task_dispatch()
 {
@@ -157,6 +184,10 @@ void task_dispatch()
 
 void task_time_tick()
 {
+    if(task_manager.need_reschedule)
+    {
+        return; 
+    }
     list_node_t * curr = list_first(&task_manager.sleep_list);
     while(curr)
     {
@@ -169,10 +200,6 @@ void task_time_tick()
             task_set_ready(task);
         }
         curr = next;
-    }
-    if(task_manager.need_reschedule)
-    {
-        return; 
     }
     task_t * current_task = task_current();
     current_task->slice_ticks--;
@@ -223,8 +250,7 @@ void sys_sleep(uint32_t ms)
 
     task_set_sleep(task_current(),(ms + (OS_TICK_MS - 1)) / OS_TICK_MS);
 
-    task_dispatch();
-    do_schedule_switch();
+    schedule_switch();
     irq_leave_protection(state);
 }
 

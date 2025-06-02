@@ -1,15 +1,15 @@
 Detecting C compiler ABI info failed to compile with the following output:
 Change Dir: E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/PROGRA~1/CMake/bin/ninja.exe cmTC_24646 && [1/2] Building C object CMakeFiles/cmTC_24646.dir/CMakeCCompilerABI.c.obj
+Run Build Command(s):C:/PROGRA~1/CMake/bin/ninja.exe cmTC_20f0d && [1/2] Building C object CMakeFiles/cmTC_20f0d.dir/CMakeCCompilerABI.c.obj
 Using built-in specs.
 COLLECT_GCC=E:\BaiduNetdiskDownload\windows\x86_64-elf-tools-windows\bin\x86_64-elf-gcc.exe
 Target: x86_64-elf
 Configured with: ../gcc-7.1.0/configure --host=i686-w64-mingw32.static --target=x86_64-elf --disable-nls --enable-languages=c,c++ --without-headers --prefix=/root/build-x86_64-elf/windows/output
 Thread model: single
 gcc version 7.1.0 (GCC) 
-COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_24646.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
- e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/cc1.exe -quiet -v -iprefix e:\baidunetdiskdownload\windows\x86_64-elf-tools-windows\bin\../lib/gcc/x86_64-elf/7.1.0/ -D RELEASE C:/Program Files (x86)/CMake/share/cmake-3.23/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -m32 -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_24646.dir/CMakeCCompilerABI.c.obj -g -O0 -version -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -o C:\Users\xiaobao\AppData\Local\Temp\cci16Av6.s
+COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_20f0d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
+ e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/cc1.exe -quiet -v -iprefix e:\baidunetdiskdownload\windows\x86_64-elf-tools-windows\bin\../lib/gcc/x86_64-elf/7.1.0/ -D RELEASE C:/Program Files (x86)/CMake/share/cmake-3.23/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -m32 -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_20f0d.dir/CMakeCCompilerABI.c.obj -g -O0 -version -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -o C:\Users\xiaobao\AppData\Local\Temp\cchcmaBU.s
 GNU C11 (GCC) version 7.1.0 (x86_64-elf)
 	compiled by GNU C version 5.5.0, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl version isl-0.16.1-GMP
 
@@ -30,12 +30,12 @@ GNU C11 (GCC) version 7.1.0 (x86_64-elf)
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: b00064cd55ffce4efe95d0fcd6948296
-COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_24646.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
- e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/as.exe --32 -o CMakeFiles/cmTC_24646.dir/CMakeCCompilerABI.c.obj C:\Users\xiaobao\AppData\Local\Temp\cci16Av6.s
+COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_20f0d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
+ e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/as.exe --32 -o CMakeFiles/cmTC_20f0d.dir/CMakeCCompilerABI.c.obj C:\Users\xiaobao\AppData\Local\Temp\cchcmaBU.s
 COMPILER_PATH=e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../libexec/gcc/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/
 LIBRARY_PATH=e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/lib/
-COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_24646.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
-[2/2] Linking C executable cmTC_24646
+COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_20f0d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
+[2/2] Linking C executable cmTC_20f0d
 Using built-in specs.
 COLLECT_GCC=E:\BaiduNetdiskDownload\windows\x86_64-elf-tools-windows\bin\x86_64-elf-gcc.exe
 Target: x86_64-elf
@@ -44,8 +44,8 @@ Thread model: single
 gcc version 7.1.0 (GCC) 
 COMPILER_PATH=e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../libexec/gcc/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/
 LIBRARY_PATH=e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/;e:/baidunetdiskdownload/windows/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/lib/
-COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'cmTC_24646' '-mtune=generic' '-march=x86-64'
-x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_24646.dir/CMakeCCompilerABI.c.obj: linker input file unused because linking not done
+COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-D' 'RELEASE' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'cmTC_20f0d' '-mtune=generic' '-march=x86-64'
+x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_20f0d.dir/CMakeCCompilerABI.c.obj: linker input file unused because linking not done
 
 
 Cannot copy output executable
@@ -53,8 +53,8 @@ Cannot copy output executable
 to destination specified by COPY_FILE:
   'E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/3.23.1/CMakeDetermineCompilerABI_C.bin'
 Unable to find the executable at any of:
-  E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp/cmTC_24646
-  E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp/Debug/cmTC_24646
-  E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp/Development/cmTC_24646
+  E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp/cmTC_20f0d
+  E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp/Debug/cmTC_20f0d
+  E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp/Development/cmTC_20f0d
 
 

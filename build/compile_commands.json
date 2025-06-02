@@ -56,6 +56,16 @@
 },
 {
   "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\ipc\\mutex.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\ipc\\mutex.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\ipc\\mutex.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\ipc\\sem.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\ipc\\sem.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\ipc\\sem.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
   "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\tools\\klib.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\tools\\klib.c",
   "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\tools\\klib.c"
 },

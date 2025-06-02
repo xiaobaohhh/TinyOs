@@ -8,7 +8,8 @@
 		"files.associations": {
 			"irq.h": "c",
 			"log.h": "c",
-			"task.h": "c"
+			"task.h": "c",
+			"sem.h": "c"
 		}
 	}
 }

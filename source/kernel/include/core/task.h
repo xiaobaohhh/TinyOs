@@ -1,8 +1,8 @@
 /*
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-05-30 16:07:56
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2025-06-02 16:27:07
+ * @LastEditors: xiaobao xiaobaogenji@163.com
+ * @LastEditTime: 2025-06-02 21:00:00
  * @FilePath: \start\source\kernel\include\core\task.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -37,7 +37,7 @@ typedef struct _task_t
     char name[TASK_NAME_SIZE];
     list_node_t run_node;
     list_node_t all_node;
-    
+    list_node_t wait_node;
     
     tss_t tss;
     int tss_sel;
@@ -58,6 +58,8 @@ typedef struct _task_manager_t
     list_t task_list;
     
     task_t  first_task;
+
+    task_t  idle_task;
     
 }task_manager_t;
 
@@ -80,5 +82,8 @@ task_t * get_to_task();
 void sys_sleep(uint32_t ms);
 void task_set_sleep(task_t *task,uint32_t ticks);
 void task_set_wakeup(task_t *task);
+
+static void idle_task_entry(void);
+void do_schedule_switch(void);
 #endif
 
