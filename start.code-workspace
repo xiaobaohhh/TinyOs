@@ -9,7 +9,11 @@
 			"irq.h": "c",
 			"log.h": "c",
 			"task.h": "c",
-			"sem.h": "c"
+			"sem.h": "c",
+			"memory.h": "c",
+			"mmu.h": "c",
+			"bitmap.h": "c",
+			"klib.h": "c"
 		}
 	}
 }

@@ -244,6 +244,15 @@ build source/kernel/CMakeFiles/kernel.dir/init/start.S.obj: ASM_COMPILER__kernel
   TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
   TARGET_PDB = source\kernel\kernel.pdb
 
+build source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/memory.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\memory.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
+  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
+  TARGET_PDB = source\kernel\kernel.pdb
+
 build source/kernel/CMakeFiles/kernel.dir/core/task.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/task.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\task.c.obj.d
   FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
@@ -307,6 +316,15 @@ build source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj: C_COMPILER__kernel_Debu
   TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
   TARGET_PDB = source\kernel\kernel.pdb
 
+build source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/bitmap.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\bitmap.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
+  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
+  TARGET_PDB = source\kernel\kernel.pdb
+
 build source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/klib.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\klib.c.obj.d
   FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
@@ -342,7 +360,7 @@ build source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj: C_COMPILER__kernel_De
 #############################################
 # Link the executable source\kernel\kernel
 
-build source/kernel/kernel: C_EXECUTABLE_LINKER__kernel_Debug source/kernel/CMakeFiles/kernel.dir/init/start.S.obj source/kernel/CMakeFiles/kernel.dir/core/task.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj source/kernel/CMakeFiles/kernel.dir/init/init.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj
+build source/kernel/kernel: C_EXECUTABLE_LINKER__kernel_Debug source/kernel/CMakeFiles/kernel.dir/init/start.S.obj source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj source/kernel/CMakeFiles/kernel.dir/core/task.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj source/kernel/CMakeFiles/kernel.dir/init/init.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj
   FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
   LINK_FLAGS = -m elf_i386  -T E:/ubuntu/diy-x86os/start/start/source/kernel/kernel.lds
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
