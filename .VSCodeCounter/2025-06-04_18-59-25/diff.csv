@@ -1,0 +1,25 @@
+"filename", "language", "JSON with Comments", "C", "JSON", "LinkerScript", "C++", "comment", "blank", "total"
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cache-v2-a9e181b4e40f6141d882.json", "JSON", 0, 0, -1267, 0, 0, 0, -1, -1268
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cache-v2-ef6ce2b1ce7dad5c05f7.json", "JSON", 0, 0, 1251, 0, 0, 0, 1, 1252
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cmakeFiles-v1-221b669f9abf26b1a3c6.json", "JSON", 0, 0, -469, 0, 0, 0, -1, -470
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cmakeFiles-v1-a7ee43f762ef1ad0c62d.json", "JSON", 0, 0, 115, 0, 0, 0, 1, 116
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\codemodel-v2-2c9d406fb972cfd42c4a.json", "JSON", 0, 0, 159, 0, 0, 0, 1, 160
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\codemodel-v2-f03cf47790ad7653fd90.json", "JSON", 0, 0, -159, 0, 0, 0, -1, -160
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\index-2025-06-03T07-31-29-0407.json", "JSON", 0, 0, -132, 0, 0, 0, -1, -133
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\index-2025-06-04T05-33-33-0611.json", "JSON", 0, 0, 132, 0, 0, 0, 1, 133
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-kernel-Debug-18e219b871d623542197.json", "JSON", 0, 0, 336, 0, 0, 0, 1, 337
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-kernel-Debug-7865ddca20e6be969b1a.json", "JSON", 0, 0, -322, 0, 0, 0, -1, -323
+"e:\ubuntu\diy-x86os\start\start\build\compile_commands.json", "JSON", 0, 0, 5, 0, 0, 0, 0, 5
+"e:\ubuntu\diy-x86os\start\start\source\comm\cpu_instr.h", "C++", 0, 0, 0, 0, 20, 0, 4, 24
+"e:\ubuntu\diy-x86os\start\start\source\kernel\core\memory.c", "C", 0, 81, 0, 0, 0, 4, 7, 92
+"e:\ubuntu\diy-x86os\start\start\source\kernel\core\task.c", "C", 0, 9, 0, 0, 0, -1, 0, 8
+"e:\ubuntu\diy-x86os\start\start\source\kernel\cpu\cpu.c", "C", 0, 6, 0, 0, 0, 0, 1, 7
+"e:\ubuntu\diy-x86os\start\start\source\kernel\cpu\mmu.c", "C", 0, 0, 0, 0, 0, 0, 1, 1
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\memory.h", "C", 0, 10, 0, 0, 0, 0, 0, 10
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\cpu\cpu.h", "C++", 0, 0, 0, 0, 1, 0, -1, 0
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\cpu\mmu.h", "C", 0, 65, 0, 0, 0, 0, 7, 72
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\init.c", "C", 0, 7, 0, 0, 0, -6, -1, 0
+"e:\ubuntu\diy-x86os\start\start\source\kernel\kernel.lds", "LinkerScript", 0, 0, 0, 5, 0, 0, 3, 8
+"e:\ubuntu\diy-x86os\start\start\source\loader\loader_32.c", "C", 0, 22, 0, 0, 0, 0, 0, 22
+"e:\ubuntu\diy-x86os\start\start\start.code-workspace", "JSON with Comments", 3, 0, 0, 0, 0, 0, 0, 3
+"Total", "-", 3, 200, -351, 5, 21, -3, 21, -104

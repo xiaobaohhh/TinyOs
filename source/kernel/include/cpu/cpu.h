@@ -63,7 +63,7 @@ void init_gdt(void);
 void cpu_init(void);
 void gate_desc_set(gate_desc_t * gate_desc, uint16_t selector, uint32_t offset, uint16_t attr);
 int gdt_alloc_desc(void);
-
+void gdt_free_desc(int selector);
 void switch_to_tss (int tss_sel);
 #endif
 

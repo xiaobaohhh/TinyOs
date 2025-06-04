@@ -114,33 +114,6 @@ exception_handler security,21,1
 exception_handler time,0x20,0
 */
 
-    .text  
-    .global interrupt_switch
-interrupt_switch:
-    mov 4(%esp), %eax
-    mov 8(%esp), %edx
-
-    
-    push %ebp
-    push %ebx
-    push %esi
-    push %edi
-    pushf                # 保存EFLAGS寄存器
-    mov %esp,(%eax)
-
-    mov %edx,%esp
-    popf                 # 恢复EFLAGS寄存器
-    pop %edi
-    pop %esi
-    pop %ebx
-    pop %ebp
-    
-
-    ret
-
-
-
-
     .text
     .global simple_switch
 simple_switch:

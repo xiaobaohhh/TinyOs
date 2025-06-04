@@ -2,7 +2,7 @@
  * @Author: xiaobao xiaobaogenji@163.com
  * @Date: 2025-06-03 13:45:11
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-03 22:50:48
+ * @LastEditTime: 2025-06-04 17:47:01
  * @FilePath: \start\source\kernel\core\memory.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -87,6 +87,7 @@ pte_t * find_pte(pde_t *page_dir, uint32_t vaddr, int alloc)
             {
                 return (pte_t *)0;
             }
+            pde->v = pg_paddr | PDE_P | PDE_W | PDE_U;
             page_table = (pte_t *)pg_paddr;
             kernel_memset(page_table, 0, MEM_PAGE_SIZE);        
         }
@@ -99,13 +100,13 @@ int memory_create_map(pde_t *page_dir, uint32_t vaddr, uint32_t paddr, int count
 {
     for(int i = 0; i < count; i++)
     {
-        log_printf("create map %d: 0x%x - 0x%x, 0x%x, perm :%d\n", i, vaddr, vaddr + MEM_PAGE_SIZE, paddr,perm);
+        //log_printf("create map %d: 0x%x - 0x%x, 0x%x, perm :%d\n", i, vaddr, vaddr + MEM_PAGE_SIZE, paddr,perm);
         pte_t * pte = find_pte(page_dir, vaddr,1);
         if (pte == (pte_t *)0)
         {
             return -1;
         }
-        log_printf("pte addr: 0x%x\n", pte);
+        //log_printf("pte addr: 0x%x\n", pte);
         ASSERT(pte->present == 0);
         pte->v = paddr | perm | PTE_P;
 
@@ -119,32 +120,48 @@ void create_kernel_table(void)
     extern uint8_t s_text[], e_text[], s_data[];
     extern uint8_t kernel_base[];
     static memory_map_t kernel_map[] = {
-        {kernel_base,s_text,0,0},
+        {kernel_base,s_text,kernel_base,PTE_W},
         {s_text,e_text,s_text,0},
-        {s_data,(void *)MEM_EBDA_START,s_data,0},
+        {s_data,(void *)MEM_EBDA_START,s_data,PTE_W},
+        {(void *)MEM_EXT_START,(void *)MEM_EXT_END,(void *)MEM_EXT_START,PTE_W}
     };
     for(int i = 0; i < sizeof(kernel_map) / sizeof(memory_map_t); i++)
     {
         memory_map_t *map = &kernel_map[i];
         uint32_t vstart = down2((uint32_t)map->vstart, MEM_PAGE_SIZE);
         uint32_t vend = up2((uint32_t)map->vend, MEM_PAGE_SIZE);
+        uint32_t pstart = down2((uint32_t)map->pstart, MEM_PAGE_SIZE);
         int page_count = (vend - vstart) / MEM_PAGE_SIZE;
-
         memory_create_map(kernel_page_dir,vstart, (uint32_t)map->pstart,page_count,map->perm);
     }
+}
 
-
+uint32_t memory_create_user_space()
+{
+    pde_t * page_dir = (pde_t *)addr_alloc_page(&paddr_alloc, 1);
+    if(page_dir == (pde_t *)0)
+    {
+        return 0;
+    }
+    kernel_memset((void *)page_dir, 0, MEM_PAGE_SIZE);
+    uint32_t user_pde_start = pde_index(MEMORY_TASK_BASE);
+    for(int i = 0; i < user_pde_start; i++)
+    {
+        page_dir[i].v = kernel_page_dir[i].v;
+    }
+    return (uint32_t)page_dir;
+    
 }
 void memory_init(boot_info_t *boot_info)
 {
     extern uint8_t *mem_free_start;
-    log_printf("mem init\n");
+    //log_printf("mem init\n");
     show_mem_info(boot_info);
 
     uint8_t *mem_free = (uint8_t *)&mem_free_start;
     uint32_t mem_up1MB_free_size = total_mem_size(boot_info) - MEM_EXT_START;
     mem_up1MB_free_size = down2(mem_up1MB_free_size,MEM_PAGE_SIZE);
-    log_printf("free memory begin addr: 0x%x ,size 0x%x\n", MEM_EXT_START, mem_up1MB_free_size);
+    //log_printf("free memory begin addr: 0x%x ,size 0x%x\n", MEM_EXT_START, mem_up1MB_free_size);
     
     addr_alloc_init(&paddr_alloc, mem_free, MEM_EXT_START, mem_up1MB_free_size, MEM_PAGE_SIZE);
     mem_free += bitmap_byte_count(paddr_alloc.size / MEM_PAGE_SIZE);

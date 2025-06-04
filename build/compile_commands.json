@@ -51,6 +51,11 @@
 },
 {
   "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\cpu\\mmu.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\cpu\\mmu.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\cpu\\mmu.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
   "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\dev\\time.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\dev\\time.c",
   "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\dev\\time.c"
 },

@@ -5,6 +5,7 @@
 #include "tools/log.h"
 #include "comm/cpu_instr.h"
 #include "cpu/irq.h"
+#include "core/memory.h"
 static task_manager_t task_manager;
 int need_reschedule = 0;
 static uint32_t idle_task_stack[1024];
@@ -26,6 +27,13 @@ static int tss_init(task_t *task,uint32_t entry,uint32_t esp)
     task->tss.cs = KERNEL_SELECTOR_CS;
     task->tss.eflags = EFLAGS_DEFAULT | EFLAGS_IF;
     task->tss_sel = tss_sel;
+    uint32_t page_dir = memory_create_user_space();
+    if(page_dir == 0)
+    {
+        gdt_free_desc(tss_sel);
+        return -1;
+    }
+    task->tss.cr3 = page_dir;
     return 0;
 }
 int task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
@@ -48,6 +56,12 @@ int task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
     task->slice_ticks = task->time_ticks;
     task->sleep_ticks = 0;
     task->state = TASK_CREATED;
+    uint32_t page_dir = memory_create_user_space();
+    if(page_dir == 0)
+    {
+        return -1;
+    }
+    task->tss.cr3 = page_dir;
     list_node_init(&task->run_node);
     list_node_init(&task->all_node);
     list_node_init(&task->wait_node);
@@ -59,11 +73,6 @@ int task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
 }
 void simple_switch(uint32_t ** from,uint32_t *to);
 void interrupt_switch(uint32_t ** from,uint32_t *to);
-void task_switch_from_to(task_t *from,task_t * to)
-{
-    //switch_to_tss(to->tss_sel);
-    interrupt_switch(&from->stack,to->stack);
-}
 static void idle_task_entry(void)
 {
     while(1)
@@ -116,7 +125,7 @@ void task_set_ready(task_t *task)
         return;
     }
     list_insert_last(&task_manager.ready_list,&task->run_node);
-    task->state = TASK_READY;
+    task->state = TASK_READY;  
 }
 
 void task_set_block(task_t *task)
@@ -211,6 +220,18 @@ void task_time_tick()
         task_dispatch();
     }
 }
+
+void mmu_set_page_dir(task_t * to_task)
+{
+    if(to_task == (task_t *)0)
+    {
+        return;
+    }
+    if(to_task->tss.cr3 != read_cr3() && to_task->tss.cr3 != 0)
+    {
+        write_cr3(to_task->tss.cr3);
+    }
+}
 void do_schedule_switch(void)
 {
     if (task_manager.need_reschedule) {
@@ -218,6 +239,7 @@ void do_schedule_switch(void)
         if (task_manager.from_task && task_manager.from_task != task_manager.to_task) {
             // 在这里进行任务切换
             // 使用简单的栈切换，避免复杂的中断上下文切换
+            mmu_set_page_dir(task_manager.to_task);
             simple_switch(&task_manager.from_task->stack, task_manager.to_task->stack);
         }
     }

@@ -19,7 +19,7 @@
 #include "ipc/sem.h"
 #include "ipc/mutex.h"
 #include "core/memory.h"
-
+#include "dev/time.h"
 void kernel_init(boot_info_t * boot_info)
 {
     //ASSERT(boot_info->ram_region_count != 2);
@@ -40,19 +40,14 @@ static uint32_t test_task_stack[1024];
 
 static sem_t sem;
 static mutex_t mutex;
-static int gobal_count = 0;
 void init_task_entry(void)
 {
-    //test();
     int count = 0;
     for(;;)
     {
-        //sys_sleep(3000);
-        //sem_wait(&sem);
+        sys_sleep(3000);
         mutex_lock(&mutex);
-        //log_printf("init task count = %d\n", count++);
-        gobal_count++;
-        log_printf("gobal_count = %d init task\n",gobal_count);
+        log_printf("init task count = %d\n", count++);
         sys_sleep(1000);
         mutex_unlock(&mutex);
     }
@@ -63,12 +58,9 @@ void test_task_entry(void)
     int count = 0;
     for(;;)
     {
-        //sys_sleep(4000);
-        //sem_wait(&sem);
+        sys_sleep(4000);
         mutex_lock(&mutex);
-        //log_printf("init idle count = %d\n", count++);
-        gobal_count++;
-        log_printf("gobal_count = %d test task\n",gobal_count);
+        log_printf("init idle count = %d\n", count++);
         sys_sleep(1000);
         mutex_unlock(&mutex);
     }
@@ -77,8 +69,6 @@ void test_task_entry(void)
 void init_main(void)
 {
     sem_init(&sem,0);
-    
-    //int a = 3 / 0;
     log_printf("init main\n");
     task_init(&init_task,"init_task",(uint32_t)init_task_entry,(uint32_t)&init_task_stack[1024]);
     task_init(&test_task,"test_task",(uint32_t)test_task_entry,(uint32_t)&test_task_stack[1024]);
@@ -89,15 +79,8 @@ void init_main(void)
     for(;;)
     {
         mutex_lock(&mutex);
-        //log_printf("init main count = %d\n", count++);
-        //sys_sleep(3000);
-        //sem_notify(&sem);
-        gobal_count++;
-        log_printf("gobal_count = %d init main\n",gobal_count);
-        sys_sleep(1000);
-        gobal_count++;
-        log_printf("gobal_count = %d init main\n",gobal_count);
-        sys_sleep(1000);
+        log_printf("init main count = %d\n", count++);
+        sys_sleep(3000);
         mutex_unlock(&mutex);
     }
 }
