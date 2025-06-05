@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-05-30 16:07:56
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-02 21:00:00
+ * @LastEditTime: 2025-06-05 21:01:03
  * @FilePath: \start\source\kernel\include\core\task.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -36,21 +36,13 @@ typedef struct _task_t
         TASK_USER       // 用户任务
     }task_type;
 
-    // 通用寄存器上下文
-    struct {
-        uint32_t eax, ebx, ecx, edx;
-        uint32_t esi, edi, ebp, esp;
-        uint32_t eip, eflags;
-        uint16_t cs, ds, es, fs, gs, ss;
-        uint32_t user_esp;      // 用户栈指针（用户任务时）
-    } context;
     
     // 内存管理
     uint32_t *page_directory;   // 页目录
     uint32_t kernel_stack;      // 内核栈
     uint32_t user_stack;        // 用户栈（如果是用户任务）
 
-    
+
     int sleep_ticks;
     int slice_ticks;
     int time_ticks;
@@ -63,8 +55,8 @@ typedef struct _task_t
     int tss_sel;
 }task_t;
 
-int task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp);
-void task_switch_from_to(task_t *from,task_t* to);
+int kernel_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp);
+int user_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp);
 void task_time_tick();
 typedef struct _task_manager_t
 {
@@ -109,5 +101,7 @@ void task_set_wakeup(task_t *task);
 static void idle_task_entry(void);
 void do_schedule_switch(void);
 void mmu_set_page_dir_task(task_t * to_task);
+
+void schedule_next_task(task_t *current_task,task_t *next_task);
 #endif
 

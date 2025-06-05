@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-05-27 13:09:35
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-05 13:42:32
+ * @LastEditTime: 2025-06-05 19:18:18
  * @FilePath: \start\source\kernel\init\init.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,39 +33,39 @@ void kernel_init(boot_info_t * boot_info)
     task_manager_init();
 }
 
-static task_t init_task;
-static uint32_t init_task_stack[1024];
+// static task_t init_task;
+// static uint32_t init_task_stack[1024];
 
-static task_t test_task;
-static uint32_t test_task_stack[1024];
+// static task_t test_task;
+// static uint32_t test_task_stack[1024];
 
 static sem_t sem;
 static mutex_t mutex;
-void init_task_entry(void)
-{
-    int count = 0;
-    for(;;)
-    {
-        sys_sleep(3000);
-        mutex_lock(&mutex);
-        log_printf("init task count = %d\n", count++);
-        sys_sleep(1000);
-        mutex_unlock(&mutex);
-    }
-}
+// void init_task_entry(void)
+// {
+//     int count = 0;
+//     for(;;)
+//     {
+//         sys_sleep(3000);
+//         mutex_lock(&mutex);
+//         log_printf("init task count = %d\n", count++);
+//         sys_sleep(1000);
+//         mutex_unlock(&mutex);
+//     }
+// }
 
-void test_task_entry(void)
-{
-    int count = 0;
-    for(;;)
-    {
-        sys_sleep(4000);
-        mutex_lock(&mutex);
-        log_printf("init idle count = %d\n", count++);
-        sys_sleep(1000);
-        mutex_unlock(&mutex);
-    }
-}
+// void test_task_entry(void)
+// {
+//     int count = 0;
+//     for(;;)
+//     {
+//         sys_sleep(4000);
+//         mutex_lock(&mutex);
+//         log_printf("init idle count = %d\n", count++);
+//         sys_sleep(1000);
+//         mutex_unlock(&mutex);
+//     }
+// }
 
 void move_to_first_task(void)
 {
@@ -77,13 +77,14 @@ void move_to_first_task(void)
 }
 void init_main(void)
 {
+    irq_disable_global();
     sem_init(&sem,0);
     log_printf("init main\n");
-    // task_init(&init_task,"init_task",(uint32_t)init_task_entry,(uint32_t)&init_task_stack[1024]);
+    //user_task_init(&init_task,"init_task",(uint32_t)init_task_entry,(uint32_t)&init_task_stack[1024]);
     // task_init(&test_task,"test_task",(uint32_t)test_task_entry,(uint32_t)&test_task_stack[1024]);
     task_first_init();
     move_to_first_task();
-    // irq_enable_global();
+    
     // int count = 0;
     // for(;;)
     // {
