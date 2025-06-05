@@ -6,6 +6,7 @@
 #include "comm/cpu_instr.h"
 #include "cpu/irq.h"
 #include "core/memory.h"
+#include "cpu/mmu.h"
 static task_manager_t task_manager;
 int need_reschedule = 0;
 static uint32_t idle_task_stack[1024];
@@ -20,11 +21,14 @@ static int tss_init(task_t *task,uint32_t entry,uint32_t esp)
     segment_desc_set(tss_sel,(uint32_t)&task->tss,sizeof(tss_t),
         SEG_P_PRESENT | SEG_DPL_0 | SEG_TYPE_TSS);
     kernel_memset(&task->tss,0,sizeof(tss_t));
+
+    int code_sel = task_manager.app_code_sel | SEG_CPL_3;
+    int data_sel = task_manager.app_data_sel | SEG_CPL_3;
     task->tss.eip = entry;
     task->tss.esp = task->tss.esp0 = esp;
-    task->tss.ss = task->tss.ss0 = KERNEL_SELECTOR_DS;
-    task->tss.es = task->tss.ds = task->tss.fs = task->tss.gs = KERNEL_SELECTOR_DS;
-    task->tss.cs = KERNEL_SELECTOR_CS;
+    task->tss.ss = task->tss.ss0 = data_sel;
+    task->tss.es = task->tss.ds = task->tss.fs = task->tss.gs = data_sel;
+    task->tss.cs = code_sel;
     task->tss.eflags = EFLAGS_DEFAULT | EFLAGS_IF;
     task->tss_sel = tss_sel;
     uint32_t page_dir = memory_create_user_space();
@@ -49,6 +53,8 @@ int task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
         *(--pesp) = 0;                  // esi
         *(--pesp) = 0;                  // edi
         *(--pesp) = EFLAGS_DEFAULT | EFLAGS_IF; // EFLAGS，允许中断
+        // *(--pesp) = task_manager.app_code_sel; // cs
+        // *(--pesp) = task_manager.app_data_sel; // ds
         task->stack = pesp;
     }
     kernel_strncpy(task->name,name,TASK_NAME_SIZE);
@@ -82,6 +88,14 @@ static void idle_task_entry(void)
 }
 void task_manager_init()
 {
+    int sel = gdt_alloc_desc();
+    segment_desc_set(sel,0,0xFFFFFFFF,SEG_P_PRESENT | SEG_DPL_3 | 
+        SEG_TYPE_DATA | SEG_TYPE_RW | SEG_DPL_3);
+    task_manager.app_data_sel = sel | SEG_CPL_3;
+    sel = gdt_alloc_desc();
+    segment_desc_set(sel,0,0xFFFFFFFF,SEG_P_PRESENT | SEG_DPL_3 | 
+        SEG_TYPE_CODE | SEG_TYPE_RW | SEG_DPL_3);
+    task_manager.app_code_sel = sel | SEG_CPL_3;
     list_init(&task_manager.ready_list);
     list_init(&task_manager.task_list);
     list_init(&task_manager.sleep_list);
@@ -96,10 +110,22 @@ void task_manager_init()
 
 void task_first_init()
 {
+    void first_task_entry(void);
+    extern uint8_t s_first_task[];
+    extern uint8_t e_first_task[];
+
+    uint32_t copy_size = (uint32_t)(e_first_task - s_first_task);
+    uint32_t alloc_size = 10 * MEM_PAGE_SIZE;
     
-    task_init(&task_manager.first_task,"first_task",0,0);
+    uint32_t first_start = (uint32_t)first_task_entry;
+    task_init(&task_manager.first_task,"first_task",first_start,0);
     write_tr(task_manager.first_task.tss_sel);
     task_manager.current_task = &task_manager.first_task;
+    mmu_set_page_dir_task(task_manager.current_task);
+
+    memory_alloc_page_for(first_start,alloc_size,PTE_P | PTE_W);
+    kernel_memcpy((void *)first_start,s_first_task,copy_size);
+
 }
 task_t * get_from_task()
 {
@@ -221,7 +247,7 @@ void task_time_tick()
     }
 }
 
-void mmu_set_page_dir(task_t * to_task)
+void mmu_set_page_dir_task(task_t * to_task)
 {
     if(to_task == (task_t *)0)
     {
@@ -239,7 +265,7 @@ void do_schedule_switch(void)
         if (task_manager.from_task && task_manager.from_task != task_manager.to_task) {
             // 在这里进行任务切换
             // 使用简单的栈切换，避免复杂的中断上下文切换
-            mmu_set_page_dir(task_manager.to_task);
+            mmu_set_page_dir_task(task_manager.to_task);
             simple_switch(&task_manager.from_task->stack, task_manager.to_task->stack);
         }
     }

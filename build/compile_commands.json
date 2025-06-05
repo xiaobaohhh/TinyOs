@@ -61,6 +61,16 @@
 },
 {
   "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\init\\first_task.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\init\\first_task.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\init\\first_task.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -m32 -g  -g -o source\\kernel\\CMakeFiles\\kernel.dir\\init\\first_task_entry.S.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\init\\first_task_entry.S",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\init\\first_task_entry.S"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
   "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\init\\init.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\init\\init.c",
   "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\init\\init.c"
 },

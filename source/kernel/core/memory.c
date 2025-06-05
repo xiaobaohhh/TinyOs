@@ -2,7 +2,7 @@
  * @Author: xiaobao xiaobaogenji@163.com
  * @Date: 2025-06-03 13:45:11
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-04 17:47:01
+ * @LastEditTime: 2025-06-05 15:17:07
  * @FilePath: \start\source\kernel\core\memory.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -170,4 +170,33 @@ void memory_init(boot_info_t *boot_info)
 
     create_kernel_table();
     mmu_set_page_dir((uint32_t)kernel_page_dir);
+}
+
+
+int memory_alloc_for_page_dir(uint32_t page_dir,uint32_t vaddr,uint32_t size,int perm)
+{
+    uint32_t current_vaddr = vaddr;
+
+    int page_count = up2(size,MEM_PAGE_SIZE) / MEM_PAGE_SIZE;
+    for(int i = 0; i < page_count; i++)
+    {
+        uint32_t paddr = addr_alloc_page(&paddr_alloc,1);
+        if(paddr == 0)
+        {
+            return 0;
+        }
+        int err = memory_create_map((pde_t *)page_dir,current_vaddr,paddr,1,perm);
+        if(err < 0)
+        {
+            log_printf("memory_alloc_for_page_dir error\n");
+            return 0;
+        }
+        current_vaddr += MEM_PAGE_SIZE;
+    }
+    return 0;
+}
+
+int memory_alloc_page_for(uint32_t addr,uint32_t size,int perm)
+{
+    return memory_alloc_for_page_dir(task_current()->tss.cr3,addr,size,perm);
 }

@@ -47,6 +47,10 @@ typedef struct _gate_desc_t
 #define SEG_P_PRESENT (1 << 7)
 #define SEG_DPL_0 (0 << 5)
 #define SEG_DPL_3 (3 << 5)
+
+#define SEG_CPL_0 (0 << 0)
+#define SEG_CPL_3 (3 << 0)
+
 #define SEG_S_SYSTEM (0 << 4)
 #define SEG_S_NORMAL (1 << 4)
 #define SEG_S_CODE_DATA (1 << 4)

@@ -31,6 +31,26 @@ typedef struct _task_t
         TASK_STOP,
     }state;
 
+    enum{
+        TASK_KERNEL,    // 内核任务
+        TASK_USER       // 用户任务
+    }task_type;
+
+    // 通用寄存器上下文
+    struct {
+        uint32_t eax, ebx, ecx, edx;
+        uint32_t esi, edi, ebp, esp;
+        uint32_t eip, eflags;
+        uint16_t cs, ds, es, fs, gs, ss;
+        uint32_t user_esp;      // 用户栈指针（用户任务时）
+    } context;
+    
+    // 内存管理
+    uint32_t *page_directory;   // 页目录
+    uint32_t kernel_stack;      // 内核栈
+    uint32_t user_stack;        // 用户栈（如果是用户任务）
+
+    
     int sleep_ticks;
     int slice_ticks;
     int time_ticks;
@@ -61,6 +81,9 @@ typedef struct _task_manager_t
 
     task_t  idle_task;
     
+
+    int app_code_sel;
+    int app_data_sel;
 }task_manager_t;
 
 void task_manager_init();
@@ -85,5 +108,6 @@ void task_set_wakeup(task_t *task);
 
 static void idle_task_entry(void);
 void do_schedule_switch(void);
+void mmu_set_page_dir_task(task_t * to_task);
 #endif
 
