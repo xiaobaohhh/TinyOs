@@ -29,7 +29,7 @@ void log_init (void)
 
 void log_printf (const char *fmt, ...)
 {
-    char buf[128];
+    char buf[256];
     kernel_memset(buf, 0, sizeof(buf));
 
     va_list args;
@@ -38,7 +38,8 @@ void log_printf (const char *fmt, ...)
     kernel_vsprintf(buf, fmt, args);
     va_end(args);
 
-    mutex_lock(&log_mutex);
+    //mutex_lock(&log_mutex);
+    irq_state_t state = irq_enter_protection();
     const char *p = buf;
     while (*p != '\0')
     {
@@ -49,7 +50,8 @@ void log_printf (const char *fmt, ...)
 
     outb(COM_PORT, '\r');
     //outb(COM_PORT, '\n');
-    mutex_unlock(&log_mutex);
+    irq_leave_protection(state);
+    //mutex_unlock(&log_mutex);
 }
 
 

@@ -10,6 +10,7 @@
 static task_manager_t task_manager;
 int need_reschedule = 0;
 static uint32_t idle_task_stack[1024];
+static uint32_t kernel_stack[1024];
 static int tss_init(task_t *task,uint32_t entry,uint32_t esp, int kernel_or_user)
 {
     kernel_memset(&task->tss,0,sizeof(tss_t));
@@ -17,17 +18,17 @@ static int tss_init(task_t *task,uint32_t entry,uint32_t esp, int kernel_or_user
     //0表示内核任务，1表示用户任务
     if(kernel_or_user == 0)
     {
-        task->tss.cs = 0x08;    // 内核代码段
-        task->tss.ds = 0x10;    // 内核数据段
-        task->tss.ss = 0x10;    // 内核栈段
-        task->tss.eflags = 0x202; // 开启中断
+        task->tss.cs = KERNEL_SELECTOR_CS;    // 内核代码段
+        task->tss.ds = KERNEL_SELECTOR_DS;    // 内核数据段
+        task->tss.ss = KERNEL_SELECTOR_DS;    // 内核栈段
+        task->tss.eflags = EFLAGS_DEFAULT| EFLAGS_IF; // 开启中断
     }
     else
     {
-        task->tss.cs = 0x1B;    // 用户代码段
-        task->tss.ds = 0x23;    // 用户数据段
-        task->tss.ss = 0x23;    // 用户栈段
-        task->tss.eflags = 0x202; // 开启中断
+        task->tss.cs = USER_SELECTOR_CS;    // 用户代码段
+        task->tss.ds = USER_SELECTOR_DS;    // 用户数据段
+        task->tss.ss = USER_SELECTOR_DS;    // 用户栈段
+        task->tss.eflags = EFLAGS_DEFAULT| EFLAGS_IF; // 开启中断
     }
     task->tss.esp = esp;
     task->tss.eip = entry;
@@ -92,21 +93,41 @@ static void idle_task_entry(void)
         hlt();
     }
 }
+static void global_tss_init()
+{
+    task_manager.global_tss.ss0 = KERNEL_SELECTOR_DS;
+    task_manager.global_tss.esp0 = (uint32_t)&kernel_stack[1024];
+    task_manager.global_tss.cs = KERNEL_SELECTOR_CS;
+    task_manager.global_tss.ds = KERNEL_SELECTOR_DS;
+    task_manager.global_tss.es = KERNEL_SELECTOR_DS;
+    task_manager.global_tss.fs = KERNEL_SELECTOR_DS;
+    task_manager.global_tss.gs = KERNEL_SELECTOR_DS;
+}
+static void task_gdt_init()
+{
+    // 直接配置用户段到对应的GDT表项，确保段基址为0  
+    int sel = gdt_alloc_desc();
+    segment_desc_set(sel, 0, 0xFFFFFFFF, SEG_P_PRESENT | SEG_DPL_3 | SEG_S_NORMAL |
+        SEG_TYPE_CODE | SEG_TYPE_RW | SEG_D);  // 索引3，对应选择子0x1B (0x18+RPL_3)
+    sel = gdt_alloc_desc();
+    segment_desc_set(sel, 0, 0xFFFFFFFF, SEG_P_PRESENT | SEG_DPL_3 | SEG_S_NORMAL |
+        SEG_TYPE_DATA | SEG_TYPE_RW | SEG_D);  // 索引4，对应选择子0x23 (0x20+RPL_3)
+    sel = gdt_alloc_desc();
+    segment_desc_set(sel, (uint32_t)&task_manager.global_tss, sizeof(tss_t),
+            SEG_P_PRESENT | SEG_DPL_0 | SEG_TYPE_TSS);
+    task_manager.tss_sel = sel;
+}
 void task_manager_init()
 {
-    int sel = gdt_alloc_desc();
-    segment_desc_set(0x1B,0,0xFFFFFFFF,SEG_P_PRESENT | SEG_DPL_3 | SEG_S_NORMAL |
-        SEG_TYPE_CODE | SEG_TYPE_RW | SEG_DPL_3);
-    task_manager.app_code_sel = sel | SEG_CPL_3;
-    sel = gdt_alloc_desc();
-    segment_desc_set(0x23,0,0xFFFFFFFF,SEG_P_PRESENT | SEG_DPL_3 | SEG_S_NORMAL |
-        SEG_TYPE_DATA | SEG_TYPE_RW | SEG_DPL_3);
-    task_manager.app_data_sel = sel | SEG_CPL_3;
+    task_gdt_init();
+    global_tss_init();
     
+    
+    // show_base(3);
+    // show_base(4);
     list_init(&task_manager.ready_list);
-    list_init(&task_manager.task_list);
+    list_init(&task_manager.task_list);     
     list_init(&task_manager.sleep_list);
-
     task_manager.current_task = (task_t *)0;
     task_manager.from_task = (task_t *)0;
     task_manager.to_task = (task_t *)0;
@@ -126,11 +147,11 @@ void task_first_init()
     
     uint32_t first_start = (uint32_t)first_task_entry;
     kernel_task_init(&task_manager.first_task,"first_task",first_start,0);
-    write_tr(task_manager.first_task.tss_sel);
+    write_tr(task_manager.tss_sel);
     task_manager.current_task = &task_manager.first_task;
     mmu_set_page_dir_task(task_manager.current_task);
 
-    memory_alloc_page_for(first_start,alloc_size,PTE_P | PTE_W);
+    memory_alloc_page_for(first_start,alloc_size,PTE_P | PTE_W | PTE_U);
     kernel_memcpy((void *)first_start,s_first_task,copy_size);
 
 }
@@ -206,7 +227,8 @@ task_t * task_next_run()
 void schedule_switch()
 {
     task_dispatch();
-    do_schedule_switch();
+    //do_schedule_switch();
+    schedule_next_task();
 }
 void task_dispatch()
 {
@@ -226,7 +248,7 @@ void task_dispatch()
 
 void task_time_tick()
 {
-    if(task_manager.need_reschedule)
+    if(task_manager.need_reschedule || task_current() == (task_t *)0 )
     {
         return; 
     }
@@ -310,11 +332,11 @@ void sys_sleep(uint32_t ms)
 }
 
 void universal_task_switch();
-void schedule_next_task(task_t *current_task,task_t *next_task) {
-    if (next_task && next_task != current_task) {
-        task_t *old = current_task;
-        current_task = next_task;
-        
+void schedule_next_task() {
+    
+        task_t *old =  task_manager.from_task;
+        task_t *next_task = task_manager.to_task;
+        if (next_task && next_task != old) {
         // 一个函数搞定所有切换！
         universal_task_switch(
             old ? &old->tss : (void *)0,               // 保存当前任务的TSS指针

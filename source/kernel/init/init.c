@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-05-27 13:09:35
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-05 19:18:18
+ * @LastEditTime: 2025-06-06 21:45:27
  * @FilePath: \start\source\kernel\init\init.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -77,7 +77,7 @@ void move_to_first_task(void)
 }
 void init_main(void)
 {
-    irq_disable_global();
+    irq_enable_global();
     sem_init(&sem,0);
     log_printf("init main\n");
     //user_task_init(&init_task,"init_task",(uint32_t)init_task_entry,(uint32_t)&init_task_stack[1024]);

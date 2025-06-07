@@ -33,9 +33,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00000320  00000000  00000000  000050dc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000444  00000000  00000000  000053fc  2**0
+ 10 .debug_str    00000447  00000000  00000000  000053fc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000018  00000000  00000000  00005840  2**0
+ 11 .debug_ranges 00000018  00000000  00000000  00005843  2**0
                   CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
 00008000 l    d  .text	00000000 .text
@@ -73,9 +73,9 @@ SYMBOL TABLE:
 000083d8 l     F .text	0000012d read_disk
 00008505 l     F .text	0000011a reload_elf_file
 0000861f l     F .text	00000005 die
-0000a000 l     O .data	00001000 page_dir.1899
+0000a000 l     O .data	00001000 page_dir.1906
 00008314 g     F .text	00000023 loader_entry
-00009000 g     O .data	00000018 gdt_table
+00009000 g     O .data	00000018 gdt_table_16
 0000866b g     F .text	00000051 load_kernel
 00008624 g     F .text	00000047 enable_page_mode
 0000b000 g     O .bss	000000a4 boot_info
@@ -450,7 +450,7 @@ static void enter_protect_mode(void)
     82b5:	66 68 92 00 00 00    	pushl  $0x92
     82bb:	66 e8 81 fd ff ff    	calll  8042 <outb>
     82c1:	66 83 c4 08          	add    $0x8,%esp
-    lgdt((uint32_t)gdt_table,sizeof(gdt_table));
+    lgdt((uint32_t)gdt_table_16,sizeof(gdt_table_16));
     82c5:	66 b8 00 90 00 00    	mov    $0x9000,%eax
     82cb:	66 6a 18             	pushl  $0x18
     82ce:	66 50                	push   %eax

@@ -111,7 +111,6 @@ int kernel_memcmp (void *d1, void *d2, int size)
 void kernel_itoa (char *buf, int num, int base)
 {
     int is_neg = 0;
-    is_neg = num < 0 ? 1 : 0;
     static const char * num2ch = "0123456789abcdef";
     char *p = buf;
     if(base != 2 && base != 8 && base != 10 && base != 16)
@@ -119,20 +118,36 @@ void kernel_itoa (char *buf, int num, int base)
         *p = '\0';
         return;
     }
-    if(num < 0 && base == 10)
+    
+    // 对于十六进制，强制按无符号数处理
+    if(base == 16)
     {
-        //*p++ = '-';
-        num = -num;
+        uint32_t unum = (uint32_t)num;  // 强制转换为无符号数
+        do{
+            char ch = num2ch[unum % base];
+            *p++ = ch;
+            unum /= base;
+        }while (unum);
     }
-    do{
-        char ch = num2ch[num % base];
-        *p++ = ch;
-        num /= base;
-    }while (num);
-    if(base == 10 && is_neg)
+    else
     {
-        *p++ = '-';
+        // 其他进制的原有逻辑
+        is_neg = num < 0 ? 1 : 0;
+        if(num < 0 && base == 10)
+        {
+            num = -num;
+        }
+        do{
+            char ch = num2ch[num % base];
+            *p++ = ch;
+            num /= base;
+        }while (num);
+        if(base == 10 && is_neg)
+        {
+            *p++ = '-';
+        }
     }
+    
     *p-- = '\0';
 
     char *start = buf;
@@ -144,7 +159,6 @@ void kernel_itoa (char *buf, int num, int base)
         p--;
         start++;
     }
-    
 }
 void kernel_sprintf (char *buf, const char *fmt, ...)
 {
@@ -163,8 +177,8 @@ void kernel_vsprintf (char *buf, const char *fmt, va_list args)
     char ch;
     while((ch = *fmt++))
     {
-       switch(state)
-       {
+        switch(state)
+        {
         case NORMAL:
             if(ch == '%')
             {
@@ -204,8 +218,9 @@ void kernel_vsprintf (char *buf, const char *fmt, va_list args)
             }
             state = NORMAL;
             break;
-       }
+        }
     }
+    *curr = '\0';
 }
 void panic(const char *file,int line,const char *func,const char *cond)
 {

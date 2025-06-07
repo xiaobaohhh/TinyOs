@@ -52,7 +52,6 @@ typedef struct _task_t
     list_node_t wait_node;
     
     tss_t tss;
-    int tss_sel;
 }task_t;
 
 int kernel_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp);
@@ -60,6 +59,7 @@ int user_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp);
 void task_time_tick();
 typedef struct _task_manager_t
 {
+
     uint32_t need_reschedule;
     task_t * from_task;
     task_t * to_task;
@@ -73,9 +73,10 @@ typedef struct _task_manager_t
 
     task_t  idle_task;
     
+    tss_t global_tss;
 
-    int app_code_sel;
-    int app_data_sel;
+    int tss_sel;
+    
 }task_manager_t;
 
 void task_manager_init();
@@ -102,6 +103,6 @@ static void idle_task_entry(void);
 void do_schedule_switch(void);
 void mmu_set_page_dir_task(task_t * to_task);
 
-void schedule_next_task(task_t *current_task,task_t *next_task);
+void schedule_next_task();
 #endif
 

@@ -1,3 +1,11 @@
+/*
+ * @Author: xiaobao xiaobaogenji@163.com
+ * @Date: 2025-06-03 13:39:44
+ * @LastEditors: xiaobao xiaobaogenji@163.com
+ * @LastEditTime: 2025-06-06 14:45:55
+ * @FilePath: \start\source\kernel\include\core\memory.h
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 #ifndef MEMORY_H
 #define MEMORY_H
 
@@ -33,4 +41,7 @@ void memory_init(boot_info_t *boot_info);
 uint32_t memory_create_user_space();
 
 int memory_alloc_page_for(uint32_t addr,uint32_t size,int perm);
+int memory_alloc_for_page_dir(uint32_t page_dir,uint32_t vaddr,uint32_t size,int perm);
+uint32_t memory_copy(task_t * from,task_t * to);
+
 #endif

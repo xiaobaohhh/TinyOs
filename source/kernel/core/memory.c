@@ -2,7 +2,7 @@
  * @Author: xiaobao xiaobaogenji@163.com
  * @Date: 2025-06-03 13:45:11
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-05 22:19:43
+ * @LastEditTime: 2025-06-07 16:29:45
  * @FilePath: \start\source\kernel\core\memory.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,8 @@
 #include "tools/log.h"
 #include "tools/klib.h"
 #include "cpu/mmu.h"
+#include "cpu/irq.h"
+
 static addr_alloc_t paddr_alloc;
 
 static pde_t kernel_page_dir[PDE_CNT] __attribute__((aligned(MEM_PAGE_SIZE)));
@@ -29,22 +31,26 @@ static void addr_alloc_init(addr_alloc_t *addr_alloc,uint8_t* bits,
 static uint32_t addr_alloc_page(addr_alloc_t *addr_alloc, int page_count)
 {
     uint32_t  addr = 0;
-    mutex_lock(&addr_alloc->mutex);
+    //mutex_lock(&addr_alloc->mutex);
+    irq_state_t state = irq_enter_protection();
     int page_index = bitmap_alloc_nbits(&addr_alloc->bitmap, 0, page_count);
     if (page_index >= 0)
     {
         addr = addr_alloc->start + page_index * addr_alloc->page_size;
     }
-    mutex_unlock(&addr_alloc->mutex);
+    irq_leave_protection(state);
+    //mutex_unlock(&addr_alloc->mutex);
     return addr;
 }
 
 static void addr_free_page(addr_alloc_t *addr_alloc, uint32_t addr, int page_count)
 {
-    mutex_lock(&addr_alloc->mutex);
+    //mutex_lock(&addr_alloc->mutex);
+    irq_state_t state = irq_enter_protection();
     uint32_t page_index = (addr - addr_alloc->start) / addr_alloc->page_size;
     bitmap_set_bit(&addr_alloc->bitmap, page_index, page_count,0);
-    mutex_unlock(&addr_alloc->mutex);
+    irq_leave_protection(state);
+    //mutex_unlock(&addr_alloc->mutex);
 }
 
 void show_mem_info(boot_info_t *boot_info)
@@ -199,4 +205,24 @@ int memory_alloc_for_page_dir(uint32_t page_dir,uint32_t vaddr,uint32_t size,int
 int memory_alloc_page_for(uint32_t addr,uint32_t size,int perm)
 {
     return memory_alloc_for_page_dir(task_current()->tss.cr3,addr,size,perm);
+}
+
+
+uint32_t memory_copy(task_t * from,task_t * to)
+{
+    pde_t * from_page_dir = (pde_t *)from->tss.cr3;
+    pde_t * to_page_dir = (pde_t *)to->tss.cr3;
+    
+    uint32_t user_pde_start = pde_index(MEMORY_TASK_BASE);
+    for(int i = user_pde_start; i < 1024; i++)
+    {
+        pde_t * from_pde = from_page_dir + i;
+        pde_t * to_pde = to_page_dir + i;
+        if(from_pde->present)
+        {
+            to_pde->v = from_pde->v;
+        }
+    }
+    return 0;
+    
 }

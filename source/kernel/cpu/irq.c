@@ -7,10 +7,21 @@
 static gate_desc_t idt_table[IRQ_TABLE_NU];
 static dump_core_regs(exception_frame_t *frame)
 {
+    uint32_t ss,esp;
+    if(frame->cs & 0x3)
+    {
+        ss = frame->ss3;
+        esp = frame->esp3;
+    }
+    else
+    {
+        ss = frame->ds;
+        esp = frame->esp;
+    }
     log_printf("IRQ: %d, error code: %d\n",frame->irq_num,frame->error_code);
-    log_printf("CS: %d DS: %d ES: %d SS: %d FS: %d GS: %d\n",frame->cs,frame->ds,frame->es,frame->ds,frame->fs,frame->gs);
+    log_printf("CS: %x DS: %x ES: %x SS: %x FS: %x GS: %x\n",frame->cs,frame->ds,frame->es,ss,frame->fs,frame->gs);
     log_printf("EAX: 0x%x EBX: 0x%x ECX: 0x%x EDX: 0x%x\n",frame->eax,frame->ebx,frame->ecx,frame->edx);
-    log_printf("EIP: 0x%x EFLAGS: 0x%x ESP: 0x%x EBP: 0x%x\n",frame->eip,frame->eflags,frame->esp,frame->ebp);
+    log_printf("EIP: 0x%x EFLAGS: 0x%x ESP: 0x%x EBP: 0x%x\n",frame->eip,frame->eflags,esp,frame->ebp);
     log_printf("EDI: 0x%x ESI: 0x%x EDI: 0x%x\n",frame->edi,frame->esi,frame->edi);
 }
 static void do_default_handler(exception_frame_t *frame,const char *message)
@@ -78,11 +89,65 @@ void do_handler_stack_segment_fault(exception_frame_t *frame)
 }
 void do_handler_general_protection(exception_frame_t *frame)
 {
-    do_default_handler(frame,"general protection exception");
+    log_printf("--------------------------------");
+    log_printf("IRQ/Exception happened: General Protection.");
+    if (frame->error_code & ERR_GP_EXT) {
+        log_printf("the exception occurred during delivery of an "
+                "event external to the program, such as an interrupt"
+                "or an earlier exception.");
+    } else {
+        log_printf("the exception occurred during delivery of a"
+                    "software interrupt (INT n, INT3, or INTO).");
+    }
+    
+    if (frame->error_code & ERR_GP_IDT) {
+        log_printf("the index portion of the error code refers "
+                    "to a gate descriptor in the IDT");
+    } else {
+        log_printf("the index refers to a descriptor in the GDT");
+    }
+    
+    log_printf("segment index: %d", frame->error_code & 0xFFF8);
+
+    dump_core_regs(frame);
+    while(1)
+    {
+        hlt();
+    }
 }
 void do_handler_page_fault(exception_frame_t *frame)
 {
-    do_default_handler(frame,"page fault exception");
+    log_printf("---------------------\n");
+    log_printf("page fault exception\n");
+    if(frame->error_code & ERR_PAGE_P)
+    {
+        log_printf("page fault exception: page level protection: 0x%x\n",read_cr2());
+    }
+    else
+    {
+        log_printf("page fault exception: page not present: 0x%x\n",read_cr2());
+    }
+    if(frame->error_code & ERR_PAGE_WR)
+    {
+        log_printf("page fault exception: write access :0x%x\n",read_cr2());
+    }
+    else
+    {
+        log_printf("page fault exception: read access :0x%x\n",read_cr2());
+    }
+    if(frame->error_code & ERR_PAGE_US)
+    {
+        log_printf("page fault exception: user access :0x%x\n",read_cr2());
+    }
+    else
+    {
+        log_printf("page fault exception: supervisor access :0x%x\n",read_cr2());
+    }
+    dump_core_regs(frame);
+    while(1)
+    {
+        hlt();
+    }
 }
 void do_handler_x87_floating_point(exception_frame_t *frame)
 {   

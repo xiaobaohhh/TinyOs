@@ -51,7 +51,7 @@ static void detect_memory(void) {
     
 }
 
-uint16_t gdt_table[][4] = {
+uint16_t gdt_table_16[][4] = {
     {0,0,0,0},
     {0xffff,0x0000,0x9a00,0x00cf},
     {0xffff,0x0000,0x9200,0x00cf},
@@ -62,7 +62,7 @@ static void enter_protect_mode(void)
     cli();
     uint8_t v = inb(0x92);
     outb(0x92,v | 0x2);
-    lgdt((uint32_t)gdt_table,sizeof(gdt_table));
+    lgdt((uint32_t)gdt_table_16,sizeof(gdt_table_16));
 
     uint32_t cr0 = read_cr0();
     write_cr0(cr0 | (1 << 0));

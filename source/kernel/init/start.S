@@ -46,6 +46,14 @@ exception_handler_\name:
     push %es
     push %fs
     push %gs
+    
+    # 设置内核段寄存器
+    mov $KERNEL_SELECTOR_DS, %ax
+    mov %ax, %ds
+    mov %ax, %es
+    mov %ax, %fs
+    mov %ax, %gs
+    
     push %esp
     call do_handler_\name
     add $(1*4), %esp
@@ -73,6 +81,12 @@ exception_handler_time:
     push %es
     push %fs
     push %gs
+    # 设置内核段寄存器
+    mov $KERNEL_SELECTOR_DS, %ax
+    mov %ax, %ds
+    mov %ax, %es
+    mov %ax, %fs
+    mov %ax, %gs
     push %esp
     call do_handler_time
     add $(1*4), %esp
@@ -83,10 +97,44 @@ exception_handler_time:
     popa
 
     add $(2*4), %esp
-    call do_schedule_switch
+#   call do_schedule_switch
+    call schedule_next_task
+    iret 
+
+
+
+    .text
+    .extern do_handler_page_fault
+    .global exception_handler_page_fault
+exception_handler_page_fault:
+
+    push $14
+    pusha
+    push %ds
+    push %es
+    push %fs
+    push %gs
+    # 设置内核段寄存器
+    mov $KERNEL_SELECTOR_DS, %ax
+    mov %ax, %ds
+    mov %ax, %es
+    mov %ax, %fs
+    mov %ax, %gs
+    push %esp
+    call do_handler_page_fault
+    add $(1*4), %esp
+    pop %gs
+    pop %fs
+    pop %es
+    pop %ds
+    popa
+
+    add $(2*4), %esp
 
     iret 
 
+
+    
 exception_handler unknown,-1,0
 exception_handler divider,0,0
 exception_handler debug,1,0
@@ -102,7 +150,7 @@ exception_handler invalid_tss,10,1
 exception_handler segment_not_present,11,1
 exception_handler stack_segment_fault,12,1
 exception_handler general_protection,13,1
-exception_handler page_fault,14,1
+# exception_handler page_fault,14,1
 exception_handler x87_floating_point,16,0
 exception_handler alignment_check,17,1
 exception_handler machine_check,18,0
@@ -139,67 +187,6 @@ simple_switch:
     
 
     ret
-
-
-# 手动构造iret栈帧切换到用户态
-    .global manual_switch_to_user
-manual_switch_to_user:
-    # 参数：user_entry_point
-    mov 4(%esp), %eax    # 用户程序入口地址
-    
-    # 设置用户态段寄存器
-    mov $0x23, %bx       # 用户数据段选择子
-    mov %bx, %ds
-    mov %bx, %es
-    mov %bx, %fs
-    mov %bx, %gs
-    
-    # 构造iret栈帧（从高地址到低地址压栈）
-    push $0x23           # 用户栈段(SS)
-    push $0x7FFFFFFF     # 用户栈指针(ESP) 
-    push $0x202          # EFLAGS（开启中断标志IF=1）
-    push $0x1B           # 用户代码段(CS)
-    push %eax            # 用户程序入口(EIP)
-    
-    # 执行特权级切换
-    iret
-
-# 创建用户进程并切换（更完整的版本）
-    .global create_and_switch_user
-create_and_switch_user:
-    # 参数：用户程序地址、用户栈地址
-    mov 4(%esp), %eax    # 用户程序地址
-    mov 8(%esp), %ebx    # 用户栈地址
-    
-    # 清理寄存器（安全考虑）
-    xor %ecx, %ecx
-    xor %edx, %edx
-    xor %esi, %esi
-    xor %edi, %edi
-    xor %ebp, %ebp
-    
-    # 设置用户态段寄存器
-    mov $0x23, %cx       # 用户数据段选择子
-    mov %cx, %ds
-    mov %cx, %es
-    mov %cx, %fs
-    mov %cx, %gs
-    
-    # 构造完整的iret栈帧
-    push $0x23           # SS - 用户栈段
-    push %ebx            # ESP - 用户栈指针
-    pushf                # 获取当前EFLAGS
-    pop %ecx
-    or $0x200, %ecx      # 设置IF标志（开启中断）
-    push %ecx            # EFLAGS
-    push $0x1B           # CS - 用户代码段
-    push %eax            # EIP - 用户程序入口
-    
-    # 跳转到用户态
-    iret
-
-
-
 
 
 # =========================== 通用任务切换系统 ===========================
@@ -288,15 +275,18 @@ skip_page_dir_kernel:
     mov 52(%esp), %esi   # new_esi
     mov 56(%esp), %edi   # new_edi
     mov 60(%esp), %ebp   # new_ebp
-    mov 32(%esp), %esp   # new_esp
-    
+
     # 恢复EFLAGS并跳转
-    mov 24(%esp), %eax   # new_eflags (注意ESP已经变了)
+    mov 24(%esp), %eax   # new_eflags
     push %eax
     popf
+    mov 20(%esp),%eax
+    mov 32(%esp), %esp   # new_esp
+    
+    
     
     # 跳转到新任务
-    jmp *20(%esp)        # new_eip
+    jmp *%eax        # new_eip
 
 switch_to_user_task:
     # 切换到用户任务

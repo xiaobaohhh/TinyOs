@@ -84,8 +84,6 @@ build source/boot/CMakeFiles/boot.dir/start.S.obj: ASM_COMPILER__boot_Debug E$:/
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\boot\CMakeFiles\boot.dir
   OBJECT_FILE_DIR = source\boot\CMakeFiles\boot.dir
-  TARGET_COMPILE_PDB = source\boot\CMakeFiles\boot.dir\
-  TARGET_PDB = source\boot\boot.pdb
 
 build source/boot/CMakeFiles/boot.dir/boot.c.obj: C_COMPILER__boot_Debug E$:/ubuntu/diy-x86os/start/start/source/boot/boot.c || cmake_object_order_depends_target_boot
   DEP_FILE = source\boot\CMakeFiles\boot.dir\boot.c.obj.d
@@ -93,8 +91,6 @@ build source/boot/CMakeFiles/boot.dir/boot.c.obj: C_COMPILER__boot_Debug E$:/ubu
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\boot\CMakeFiles\boot.dir
   OBJECT_FILE_DIR = source\boot\CMakeFiles\boot.dir
-  TARGET_COMPILE_PDB = source\boot\CMakeFiles\boot.dir\
-  TARGET_PDB = source\boot\boot.pdb
 
 
 # =============================================================================
@@ -110,9 +106,8 @@ build source/boot/boot: C_EXECUTABLE_LINKER__boot_Debug source/boot/CMakeFiles/b
   OBJECT_DIR = source\boot\CMakeFiles\boot.dir
   POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\boot && x86_64-elf-objcopy -O binary boot.elf E:/ubuntu/diy-x86os/start/start/../../image/boot.bin && x86_64-elf-objdump -x -d -S -m i8086 E:/ubuntu/diy-x86os/start/start/build/source/boot/boot.elf > boot_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/boot/boot.elf > boot_elf.txt"
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = source\boot\CMakeFiles\boot.dir\
   TARGET_FILE = source\boot\boot
-  TARGET_PDB = source\boot\boot.pdb
+  TARGET_PDB = boot.dbg
 
 
 #############################################
@@ -158,8 +153,6 @@ build source/loader/CMakeFiles/loader.dir/start.S.obj: ASM_COMPILER__loader_Debu
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
   OBJECT_FILE_DIR = source\loader\CMakeFiles\loader.dir
-  TARGET_COMPILE_PDB = source\loader\CMakeFiles\loader.dir\
-  TARGET_PDB = source\loader\loader.pdb
 
 build source/loader/CMakeFiles/loader.dir/loader_16.c.obj: C_COMPILER__loader_Debug E$:/ubuntu/diy-x86os/start/start/source/loader/loader_16.c || cmake_object_order_depends_target_loader
   DEP_FILE = source\loader\CMakeFiles\loader.dir\loader_16.c.obj.d
@@ -167,8 +160,6 @@ build source/loader/CMakeFiles/loader.dir/loader_16.c.obj: C_COMPILER__loader_De
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
   OBJECT_FILE_DIR = source\loader\CMakeFiles\loader.dir
-  TARGET_COMPILE_PDB = source\loader\CMakeFiles\loader.dir\
-  TARGET_PDB = source\loader\loader.pdb
 
 build source/loader/CMakeFiles/loader.dir/loader_32.c.obj: C_COMPILER__loader_Debug E$:/ubuntu/diy-x86os/start/start/source/loader/loader_32.c || cmake_object_order_depends_target_loader
   DEP_FILE = source\loader\CMakeFiles\loader.dir\loader_32.c.obj.d
@@ -176,8 +167,6 @@ build source/loader/CMakeFiles/loader.dir/loader_32.c.obj: C_COMPILER__loader_De
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
   OBJECT_FILE_DIR = source\loader\CMakeFiles\loader.dir
-  TARGET_COMPILE_PDB = source\loader\CMakeFiles\loader.dir\
-  TARGET_PDB = source\loader\loader.pdb
 
 
 # =============================================================================
@@ -193,9 +182,8 @@ build source/loader/loader: C_EXECUTABLE_LINKER__loader_Debug source/loader/CMak
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
   POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\loader && x86_64-elf-objcopy -O binary loader.elf E:/ubuntu/diy-x86os/start/start/../../image/loader.bin && x86_64-elf-objdump -x -d -S -m i8086 E:/ubuntu/diy-x86os/start/start/build/source/loader/loader.elf > loader_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/loader/loader.elf > loader_elf.txt"
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = source\loader\CMakeFiles\loader.dir\
   TARGET_FILE = source\loader\loader
-  TARGET_PDB = source\loader\loader.pdb
+  TARGET_PDB = loader.dbg
 
 
 #############################################
@@ -241,8 +229,6 @@ build source/kernel/CMakeFiles/kernel.dir/init/start.S.obj: ASM_COMPILER__kernel
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/memory.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\memory.c.obj.d
@@ -250,8 +236,6 @@ build source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj: C_COMPILER__kernel_
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/core/task.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/task.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\task.c.obj.d
@@ -259,8 +243,6 @@ build source/kernel/CMakeFiles/kernel.dir/core/task.c.obj: C_COMPILER__kernel_De
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/cpu/cpu.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\cpu\cpu.c.obj.d
@@ -268,8 +250,6 @@ build source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj: C_COMPILER__kernel_Debu
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\cpu
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/cpu/irq.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\cpu\irq.c.obj.d
@@ -277,8 +257,6 @@ build source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj: C_COMPILER__kernel_Debu
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\cpu
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/cpu/mmu.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/cpu/mmu.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\cpu\mmu.c.obj.d
@@ -286,8 +264,6 @@ build source/kernel/CMakeFiles/kernel.dir/cpu/mmu.c.obj: C_COMPILER__kernel_Debu
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\cpu
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/time.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\time.c.obj.d
@@ -295,8 +271,6 @@ build source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj: C_COMPILER__kernel_Deb
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/first_task.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\first_task.c.obj.d
@@ -304,8 +278,6 @@ build source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj: C_COMPILER__ker
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj: ASM_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/first_task_entry.S || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\first_task_entry.S.obj.d
@@ -313,8 +285,6 @@ build source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj: ASM_COMPI
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/init/init.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/init.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\init.c.obj.d
@@ -322,8 +292,6 @@ build source/kernel/CMakeFiles/kernel.dir/init/init.c.obj: C_COMPILER__kernel_De
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/ipc/mutex.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\ipc\mutex.c.obj.d
@@ -331,8 +299,6 @@ build source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj: C_COMPILER__kernel_De
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\ipc
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/ipc/sem.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\ipc\sem.c.obj.d
@@ -340,8 +306,6 @@ build source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj: C_COMPILER__kernel_Debu
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\ipc
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/bitmap.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\bitmap.c.obj.d
@@ -349,8 +313,6 @@ build source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj: C_COMPILER__kernel
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/klib.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\klib.c.obj.d
@@ -358,8 +320,6 @@ build source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj: C_COMPILER__kernel_D
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/list.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\list.c.obj.d
@@ -367,8 +327,6 @@ build source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj: C_COMPILER__kernel_D
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 build source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/log.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\log.c.obj.d
@@ -376,8 +334,6 @@ build source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj: C_COMPILER__kernel_De
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
-  TARGET_PDB = source\kernel\kernel.pdb
 
 
 # =============================================================================
@@ -393,9 +349,8 @@ build source/kernel/kernel: C_EXECUTABLE_LINKER__kernel_Debug source/kernel/CMak
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\kernel && x86_64-elf-objcopy -S kernel.elf E:/ubuntu/diy-x86os/start/start/../../image/kernel.elf && x86_64-elf-objdump -x -d -S -m i386 E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf > kernel_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf > kernel_elf.txt"
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = source\kernel\CMakeFiles\kernel.dir\
   TARGET_FILE = source\kernel\kernel
-  TARGET_PDB = source\kernel\kernel.pdb
+  TARGET_PDB = kernel.dbg
 
 
 #############################################
@@ -473,14 +428,14 @@ build source/loader/all: phony source/loader/loader
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMCompiler.cmake.in C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCCompilerABI.c C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineASMCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeNinjaFindMake.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystem.cmake.in C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeTestASMCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMCompiler.cmake.in C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCCompilerABI.c C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineASMCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeNinjaFindMake.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystem.cmake.in C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeTestASMCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake: phony
 
 
 #############################################
