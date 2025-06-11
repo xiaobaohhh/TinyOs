@@ -36,6 +36,11 @@
 },
 {
   "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\core\\syscall.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\core\\syscall.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\core\\syscall.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
   "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\core\\task.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\core\\task.c",
   "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\core\\task.c"
 },
@@ -58,6 +63,11 @@
   "directory": "E:/ubuntu/diy-x86os/start/start/build",
   "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\dev\\time.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\dev\\time.c",
   "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\dev\\time.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\fs\\fs.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\fs\\fs.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\fs\\fs.c"
 },
 {
   "directory": "E:/ubuntu/diy-x86os/start/start/build",
@@ -103,5 +113,20 @@
   "directory": "E:/ubuntu/diy-x86os/start/start/build",
   "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\kernel\\CMakeFiles\\kernel.dir\\tools\\log.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\tools\\log.c",
   "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\kernel\\tools\\log.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -m32 -g  -g -o source\\applib\\CMakeFiles\\app.dir\\crt0.S.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\applib\\crt0.S",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\applib\\crt0.S"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\applib\\CMakeFiles\\app.dir\\cstart.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\applib\\cstart.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\applib\\cstart.c"
+},
+{
+  "directory": "E:/ubuntu/diy-x86os/start/start/build",
+  "command": "E:\\BaiduNetdiskDownload\\windows\\x86_64-elf-tools-windows\\bin\\x86_64-elf-gcc.exe -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/source/shell/../applib -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o source\\shell\\CMakeFiles\\shell.dir\\main.c.obj -c E:\\ubuntu\\diy-x86os\\start\\start\\source\\shell\\main.c",
+  "file": "E:\\ubuntu\\diy-x86os\\start\\start\\source\\shell\\main.c"
 }
 ]

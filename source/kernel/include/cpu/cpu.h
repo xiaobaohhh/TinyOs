@@ -1,3 +1,11 @@
+/*
+ * @Author: xiaobao xiaobaogenji@163.com
+ * @Date: 2025-05-27 19:51:47
+ * @LastEditors: xiaobao xiaobaogenji@163.com
+ * @LastEditTime: 2025-06-07 21:47:43
+ * @FilePath: \start\source\kernel\include\cpu\cpu.h
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 #ifndef CPU_H
 #define CPU_H
 
@@ -39,7 +47,7 @@ typedef struct _gate_desc_t
 #define GATE_DPL_0 (0 << 13)
 #define GATE_DPL_3 (3 << 13)
 #define GATE_TYPE_INT (0xe << 8)
-
+#define GATE_TYPE_SYSCALL (0xc << 8)
 
 
 #define SEG_G (1 << 15)

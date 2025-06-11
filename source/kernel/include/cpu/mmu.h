@@ -5,7 +5,7 @@
 #include "comm/types.h"
 #include "comm/cpu_instr.h"
 #define PDE_CNT 1024
-
+#define PTE_CNT 1024
 #define PTE_P (1 << 0)
 #define PDE_P (1 << 0)
 #define PDE_W (1 << 1)
@@ -70,5 +70,10 @@ static inline uint32_t pte_paddr(pte_t * pte)
 static inline void mmu_set_page_dir(uint32_t paddr)
 {
     write_cr3(paddr);
+}
+
+static inline uint32_t get_pte_perm(pte_t * pte)
+{
+    return (pte->v & 0x3ff);
 }
 #endif

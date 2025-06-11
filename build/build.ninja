@@ -237,6 +237,13 @@ build source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj: C_COMPILER__kernel_
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
 
+build source/kernel/CMakeFiles/kernel.dir/core/syscall.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/syscall.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\syscall.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
+
 build source/kernel/CMakeFiles/kernel.dir/core/task.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/task.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\task.c.obj.d
   FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
@@ -271,6 +278,13 @@ build source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj: C_COMPILER__kernel_Deb
   INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
+
+build source/kernel/CMakeFiles/kernel.dir/fs/fs.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/fs/fs.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\fs\fs.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\fs
 
 build source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/first_task.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\first_task.c.obj.d
@@ -343,7 +357,7 @@ build source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj: C_COMPILER__kernel_De
 #############################################
 # Link the executable source\kernel\kernel
 
-build source/kernel/kernel: C_EXECUTABLE_LINKER__kernel_Debug source/kernel/CMakeFiles/kernel.dir/init/start.S.obj source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj source/kernel/CMakeFiles/kernel.dir/core/task.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/mmu.c.obj source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj source/kernel/CMakeFiles/kernel.dir/init/init.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj
+build source/kernel/kernel: C_EXECUTABLE_LINKER__kernel_Debug source/kernel/CMakeFiles/kernel.dir/init/start.S.obj source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj source/kernel/CMakeFiles/kernel.dir/core/syscall.c.obj source/kernel/CMakeFiles/kernel.dir/core/task.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/mmu.c.obj source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj source/kernel/CMakeFiles/kernel.dir/fs/fs.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj source/kernel/CMakeFiles/kernel.dir/init/init.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj
   FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
   LINK_FLAGS = -m elf_i386  -T E:/ubuntu/diy-x86os/start/start/source/kernel/kernel.lds
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
@@ -377,13 +391,149 @@ build source/kernel/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build source/kernel/rebuild_cache: phony source/kernel/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# E:/ubuntu/diy-x86os/start/start/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target app
+
+
+#############################################
+# Order-only phony target for app
+
+build cmake_object_order_depends_target_app: phony || source/applib/CMakeFiles/app.dir
+
+build source/applib/CMakeFiles/app.dir/crt0.S.obj: ASM_COMPILER__app_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/crt0.S || cmake_object_order_depends_target_app
+  DEP_FILE = source\applib\CMakeFiles\app.dir\crt0.S.obj.d
+  FLAGS = -m32 -g  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  OBJECT_DIR = source\applib\CMakeFiles\app.dir
+  OBJECT_FILE_DIR = source\applib\CMakeFiles\app.dir
+
+build source/applib/CMakeFiles/app.dir/cstart.c.obj: C_COMPILER__app_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/cstart.c || cmake_object_order_depends_target_app
+  DEP_FILE = source\applib\CMakeFiles\app.dir\cstart.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  OBJECT_DIR = source\applib\CMakeFiles\app.dir
+  OBJECT_FILE_DIR = source\applib\CMakeFiles\app.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target app
+
+
+#############################################
+# Link the static library source\applib\libapp.a
+
+build source/applib/libapp.a: C_STATIC_LIBRARY_LINKER__app_Debug source/applib/CMakeFiles/app.dir/crt0.S.obj source/applib/CMakeFiles/app.dir/cstart.c.obj
+  LANGUAGE_COMPILE_FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  OBJECT_DIR = source\applib\CMakeFiles\app.dir
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\applib && x86_64-elf-objdump -x -d -S -m i386 E:/ubuntu/diy-x86os/start/start/build/source/applib/libapp.a > app_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/applib/libapp.a > app_elf.txt"
+  PRE_LINK = cd .
+  TARGET_FILE = source\applib\libapp.a
+  TARGET_PDB = app.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build source/applib/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\applib && "C:\Program Files (x86)\CMake\bin\cmake-gui.exe" -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build source/applib/edit_cache: phony source/applib/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build source/applib/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\applib && "C:\Program Files (x86)\CMake\bin\cmake.exe" --regenerate-during-build -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build source/applib/rebuild_cache: phony source/applib/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# E:/ubuntu/diy-x86os/start/start/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target shell
+
+
+#############################################
+# Order-only phony target for shell
+
+build cmake_object_order_depends_target_shell: phony || cmake_object_order_depends_target_app
+
+build source/shell/CMakeFiles/shell.dir/main.c.obj: C_COMPILER__shell_Debug E$:/ubuntu/diy-x86os/start/start/source/shell/main.c || cmake_object_order_depends_target_shell
+  DEP_FILE = source\shell\CMakeFiles\shell.dir\main.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/source/shell/../applib
+  OBJECT_DIR = source\shell\CMakeFiles\shell.dir
+  OBJECT_FILE_DIR = source\shell\CMakeFiles\shell.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target shell
+
+
+#############################################
+# Link the executable source\shell\shell
+
+build source/shell/shell: C_EXECUTABLE_LINKER__shell_Debug source/shell/CMakeFiles/shell.dir/main.c.obj || source/applib/libapp.a
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  LINK_FLAGS = -m elf_i386 -T E:/ubuntu/diy-x86os/start/start/source/shell/link.lds -L E:/ubuntu/diy-x86os/start/start/build/source/applib/ -lapp -L E:/ubuntu/diy-x86os/start/start/build/../../newlib/i686-elf/lib -lm -lc
+  OBJECT_DIR = source\shell\CMakeFiles\shell.dir
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\shell && x86_64-elf-objcopy -S shell.elf E:/ubuntu/diy-x86os/start/start/../../image/shell.elf && x86_64-elf-objdump -x -d -S -m i386 E:/ubuntu/diy-x86os/start/start/build/source/shell/shell.elf > shell_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/shell/shell.elf > shell_elf.txt"
+  PRE_LINK = cd .
+  TARGET_FILE = source\shell\shell
+  TARGET_PDB = shell.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build source/shell/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\shell && "C:\Program Files (x86)\CMake\bin\cmake-gui.exe" -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build source/shell/edit_cache: phony source/shell/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build source/shell/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\shell && "C:\Program Files (x86)\CMake\bin\cmake.exe" --regenerate-during-build -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build source/shell/rebuild_cache: phony source/shell/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
 # Target aliases.
+
+build app: phony source/applib/libapp.a
 
 build boot: phony source/boot/boot
 
 build kernel: phony source/kernel/kernel
 
+build libapp.a: phony source/applib/libapp.a
+
 build loader: phony source/loader/loader
+
+build shell: phony source/shell/shell
 
 # =============================================================================
 # Folder targets.
@@ -393,7 +543,14 @@ build loader: phony source/loader/loader
 #############################################
 # Folder: E:/ubuntu/diy-x86os/start/start/build
 
-build all: phony source/boot/all source/loader/all source/kernel/all
+build all: phony source/boot/all source/loader/all source/kernel/all source/applib/all source/shell/all
+
+# =============================================================================
+
+#############################################
+# Folder: E:/ubuntu/diy-x86os/start/start/build/source/applib
+
+build source/applib/all: phony source/applib/libapp.a
 
 # =============================================================================
 
@@ -417,6 +574,13 @@ build source/kernel/all: phony source/kernel/kernel
 build source/loader/all: phony source/loader/loader
 
 # =============================================================================
+
+#############################################
+# Folder: E:/ubuntu/diy-x86os/start/start/build/source/shell
+
+build source/shell/all: phony source/shell/shell
+
+# =============================================================================
 # Unknown Build Time Dependencies.
 # Tell Ninja that they may appear as side effects of build rules
 # otherwise ordered by order-only dependencies.
@@ -428,14 +592,14 @@ build source/loader/all: phony source/loader/loader
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../source/applib/CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt ../source/shell/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../source/applib/CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt ../source/shell/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake: phony
 
 
 #############################################

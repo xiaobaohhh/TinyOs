@@ -75,7 +75,7 @@ _start:
     7c0b:	8e e8                	mov    %ax,%gs
 	mov $0x7c00, %esp	# 设置栈指针到引导扇区开始处
     7c0d:	66 bc 00 7c 00 00    	mov    $0x7c00,%esp
-	mov $0xe, %ah
+	mov $0xe, %ah 
     7c13:	b4 0e                	mov    $0xe,%ah
 	mov $'H', %al
     7c15:	b0 48                	mov    $0x48,%al

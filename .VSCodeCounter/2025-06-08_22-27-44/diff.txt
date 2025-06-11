@@ -1,0 +1,66 @@
+Date : 2025-06-08 22:27:44
+Directory : e:\ubuntu\diy-x86os\start\start
+Total : 23 files,  69798 codes, 21 comments, 25 blanks, all 69844 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| Log                |          1 |     69,197 |          0 |          0 |     69,197 |
+| JSON               |         11 |        389 |          0 |          0 |        389 |
+| C                  |         10 |        210 |         21 |         25 |        256 |
+| JSON with Comments |          1 |          2 |          0 |          0 |          2 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                       |         23 |     69,798 |         21 |         25 |     69,844 |
+| . (Files)                                                                                               |          2 |     69,199 |          0 |          0 |     69,199 |
+| build                                                                                                   |         11 |        389 |          0 |          0 |        389 |
+| build (Files)                                                                                           |          1 |          5 |          0 |          0 |          5 |
+| build\.cmake                                                                                            |         10 |        384 |          0 |          0 |        384 |
+| build\.cmake\api                                                                                        |         10 |        384 |          0 |          0 |        384 |
+| build\.cmake\api\v1                                                                                     |         10 |        384 |          0 |          0 |        384 |
+| build\.cmake\api\v1\reply                                                                               |         10 |        384 |          0 |          0 |        384 |
+| source                                                                                                  |         10 |        210 |         21 |         25 |        256 |
+| source\applib                                                                                           |          1 |         22 |          8 |          0 |         30 |
+| source\kernel                                                                                           |          9 |        188 |         13 |         25 |        226 |
+| source\kernel\core                                                                                      |          3 |        155 |         10 |         24 |        189 |
+| source\kernel\include                                                                                   |          5 |         17 |          0 |          0 |         17 |
+| source\kernel\include (Files)                                                                           |          1 |          1 |          0 |          2 |          3 |
+| source\kernel\include\core                                                                              |          3 |         11 |          0 |         -2 |          9 |
+| source\kernel\include\cpu                                                                               |          1 |          5 |          0 |          0 |          5 |
+| source\kernel\init                                                                                      |          1 |         16 |          3 |          1 |         20 |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                | language           | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cache-v2-a9e181b4e40f6141d882.json            | JSON               |      1,267 |          0 |          1 |      1,268 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cache-v2-ef6ce2b1ce7dad5c05f7.json            | JSON               |     -1,251 |          0 |         -1 |     -1,252 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cmakeFiles-v1-221b669f9abf26b1a3c6.json       | JSON               |        469 |          0 |          1 |        470 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cmakeFiles-v1-a7ee43f762ef1ad0c62d.json       | JSON               |       -115 |          0 |         -1 |       -116 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\codemodel-v2-a7d5d8113bbfe2d69cf7.json        | JSON               |       -159 |          0 |         -1 |       -160 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\codemodel-v2-fb12f78ae4328fd9a472.json        | JSON               |        159 |          0 |          1 |        160 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\index-2025-06-07T09-46-38-0786.json           | JSON               |       -132 |          0 |         -1 |       -133 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\index-2025-06-08T08-52-45-0354.json           | JSON               |        132 |          0 |          1 |        133 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-kernel-Debug-372bf7b21cebcca3add4.json | JSON               |       -352 |          0 |         -1 |       -353 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-kernel-Debug-bb541995888b119b1eb7.json | JSON               |        366 |          0 |          1 |        367 |
+| e:\ubuntu\diy-x86os\start\start\build\compile_commands.json                                             | JSON               |          5 |          0 |          0 |          5 |
+| e:\ubuntu\diy-x86os\start\start\qemu-debug.log                                                          | Log                |     69,197 |          0 |          0 |     69,197 |
+| e:\ubuntu\diy-x86os\start\start\source\applib\lib_syscall.h                                             | C                  |         22 |          8 |          0 |         30 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\memory.c                                             | C                  |         49 |          9 |         14 |         72 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\syscall.c                                            | C                  |         20 |          0 |          1 |         21 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\task.c                                               | C                  |         86 |          1 |          9 |         96 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\memory.h                                     | C                  |          2 |          0 |         -1 |          1 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\syscall.h                                    | C                  |          5 |          0 |         -2 |          3 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\task.h                                       | C                  |          4 |          0 |          1 |          5 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\cpu\mmu.h                                         | C                  |          5 |          0 |          0 |          5 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\os_cfg.h                                          | C                  |          1 |          0 |          2 |          3 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\init\first_task.c                                         | C                  |         16 |          3 |          1 |         20 |
+| e:\ubuntu\diy-x86os\start\start\start.code-workspace                                                    | JSON with Comments |          2 |          0 |          0 |          2 |
+| Total                                                                                                   |                    |     69,798 |         21 |         25 |     69,844 |
++---------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

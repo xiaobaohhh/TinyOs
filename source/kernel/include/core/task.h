@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-05-30 16:07:56
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-05 21:01:03
+ * @LastEditTime: 2025-06-11 12:24:16
  * @FilePath: \start\source\kernel\include\core\task.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -18,6 +18,13 @@
 
 #define TASK_NEED_RESCHEDULE 1
 #define TASK_NOT_NEED_RESCHEDULE 0
+
+typedef struct _task_args_t
+{
+    uint32_t ret_addr;
+    uint32_t argc;
+    char **argv;
+}task_args_t;
 typedef struct _task_t
 {
     uint32_t * stack;
@@ -36,21 +43,17 @@ typedef struct _task_t
         TASK_USER       // 用户任务
     }task_type;
 
-    
-    // 内存管理
-    uint32_t *page_directory;   // 页目录
-    uint32_t kernel_stack;      // 内核栈
-    uint32_t user_stack;        // 用户栈（如果是用户任务）
+    int pid;
 
-
+    struct _task_t * parent;
     int sleep_ticks;
     int slice_ticks;
     int time_ticks;
-    char name[TASK_NAME_SIZE];
+    char name[TASK_NAME_SIZE];                                  
     list_node_t run_node;
     list_node_t all_node;
     list_node_t wait_node;
-    
+    uint32_t esp0_start;
     tss_t tss;
 }task_t;
 
@@ -104,5 +107,9 @@ void do_schedule_switch(void);
 void mmu_set_page_dir_task(task_t * to_task);
 
 void schedule_next_task();
+
+int sys_getpid();
+int sys_fork();
+int sys_execve(char *name,char **argv,char **env);
 #endif
 

@@ -23,7 +23,7 @@ _start:
 	mov %ax, %fs
 	mov %ax, %gs
 	mov $0x7c00, %esp	# 设置栈指针到引导扇区开始处
-	mov $0xe, %ah
+	mov $0xe, %ah 
 	mov $'H', %al
 	int $0x10
 

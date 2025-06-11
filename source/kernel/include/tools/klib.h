@@ -22,7 +22,8 @@ int kernel_memcmp (void *d1, void *d2, int size);
 
 void kernel_vsprintf (char *buf, const char *fmt, va_list args);
 void kernel_sprintf (char *buf, const char *fmt, ...);
-
+int strings_count(const char **start);
+char * get_file_name(const char *name);
 #ifndef RELEASE
 #define ASSERT(expr) \
     if(!(expr))panic(__FILE__,__LINE__,__func__,#expr)

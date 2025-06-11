@@ -2,7 +2,7 @@
  * @Author: xiaobao xiaobaogenji@163.com
  * @Date: 2025-06-03 13:45:11
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-07 16:29:45
+ * @LastEditTime: 2025-06-11 14:33:13
  * @FilePath: \start\source\kernel\core\memory.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -178,6 +178,32 @@ void memory_init(boot_info_t *boot_info)
     mmu_set_page_dir((uint32_t)kernel_page_dir);
 }
 
+uint32_t memory_alloc_page (void) {
+    // 内核空间虚拟地址与物理地址相同
+    return addr_alloc_page(&paddr_alloc, 1);
+}
+static pde_t * current_page_dir(void)
+{
+    return (pde_t *)(task_current()->tss.cr3);
+}
+void memory_free_page (uint32_t addr) {
+    if (addr < MEMORY_TASK_BASE) {
+        // 内核空间，直接释放
+        addr_free_page(&paddr_alloc, addr, 1);
+    } else {
+        // 进程空间，还要释放页表
+        pte_t * pte = find_pte(current_page_dir(), addr, 0);
+        ASSERT((pte == (pte_t *)0) && pte->present);
+
+        // 释放内存页
+        addr_free_page(&paddr_alloc, pte_paddr(pte), 1);
+
+        // 释放页表
+        pte->v = 0;
+    }
+}
+
+
 
 int memory_alloc_for_page_dir(uint32_t page_dir,uint32_t vaddr,uint32_t size,int perm)
 {
@@ -225,4 +251,113 @@ uint32_t memory_copy(task_t * from,task_t * to)
     }
     return 0;
     
+}
+
+uint32_t memory_copy_vum(uint32_t page_dir,uint32_t to_page_dir)
+{
+    // 复制用户空间的各项
+    uint32_t user_pde_start = pde_index(MEMORY_TASK_BASE);
+    pde_t * pde = (pde_t *)page_dir + user_pde_start;
+
+    // 遍历用户空间页目录项
+    for (int i = user_pde_start; i < PDE_CNT; i++, pde++) {
+        if (!pde->present) {
+            continue;
+        }
+
+        // 遍历页表
+        pte_t * pte = (pte_t *)pde_paddr(pde);
+        for (int j = 0; j < PTE_CNT; j++, pte++) {
+            if (!pte->present) {
+                continue;
+            }
+
+            // 分配物理内存
+            uint32_t page = addr_alloc_page(&paddr_alloc, 1);
+            if (page == 0) {
+                goto copy_failed;
+            }
+
+            // 建立映射关系
+            uint32_t vaddr = (i << 22) | (j << 12);
+            int err = memory_create_map((pde_t *)to_page_dir, vaddr, page, 1, get_pte_perm(pte));
+            if (err < 0) {
+                goto copy_failed;
+            }
+
+            // 复制内容。
+            kernel_memcpy((void *)page, (void *)vaddr, MEM_PAGE_SIZE);
+        }
+    }
+
+    return 0;
+copy_failed:
+    return -1;
+}
+
+void memory_destroy_uvm(uint32_t page_dir)
+{
+     uint32_t user_pde_start = pde_index(MEMORY_TASK_BASE);
+    pde_t * pde = (pde_t *)page_dir + user_pde_start;
+
+    ASSERT(page_dir != 0);
+
+    // 释放页表中对应的各项，不包含映射的内核页面
+    for (int i = user_pde_start; i < PDE_CNT; i++, pde++) {
+        if (!pde->present) {
+            continue;
+        }
+
+        // 释放页表对应的物理页 + 页表
+        pte_t * pte = (pte_t *)pde_paddr(pde);
+        for (int j = 0; j < PTE_CNT; j++, pte++) {
+            if (!pte->present) {
+                continue;
+            }
+
+            addr_free_page(&paddr_alloc, pte_paddr(pte), 1);
+        }
+
+        addr_free_page(&paddr_alloc, (uint32_t)pde_paddr(pde), 1);
+    }
+
+    // 页目录表
+    addr_free_page(&paddr_alloc, page_dir, 1);
+}
+
+uint32_t memory_get_paddr(uint32_t page_dir,uint32_t vaddr)
+{
+    pte_t * pte = find_pte((pde_t *)page_dir,vaddr,0);
+    if(pte == (pte_t *)0)
+    {
+        return 0;
+    }
+    return pte_paddr(pte) + (vaddr & (MEM_PAGE_SIZE - 1));
+}
+
+int memory_copy_uvm_data(uint32_t to, uint32_t page_dir, uint32_t from, uint32_t size) {
+    char *buf, *pa0;
+
+    while(size > 0){
+        // 获取目标的物理地址, 也即其另一个虚拟地址
+        uint32_t to_paddr = memory_get_paddr(page_dir, to);
+        if (to_paddr == 0) {
+            return -1;
+        }
+
+        // 计算当前可拷贝的大小
+        uint32_t offset_in_page = to_paddr & (MEM_PAGE_SIZE - 1);
+        uint32_t curr_size = MEM_PAGE_SIZE - offset_in_page;
+        if (curr_size > size) {
+            curr_size = size;       // 如果比较大，超过页边界，则只拷贝此页内的
+        }
+
+        kernel_memcpy((void *)to_paddr, (void *)from, curr_size);
+
+        size -= curr_size;
+        to += curr_size;
+        from += curr_size;
+  }
+
+  return 0;
 }

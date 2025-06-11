@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-05-29 11:01:06
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-02 22:05:36
+ * @LastEditTime: 2025-06-07 17:32:35
  * @FilePath: \start\source\kernel\tools\log.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -46,7 +46,7 @@ void log_printf (const char *fmt, ...)
         while ((inb(COM_PORT + 5) & (1 << 6)) == 0);
         outb(COM_PORT, *p);
         p++;
-    }
+    } 
 
     outb(COM_PORT, '\r');
     //outb(COM_PORT, '\n');

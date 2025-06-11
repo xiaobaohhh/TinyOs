@@ -2,7 +2,7 @@
  * @Author: xiaobao xiaobaogenji@163.com
  * @Date: 2025-05-27 19:55:41
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-06 15:52:35
+ * @LastEditTime: 2025-06-07 21:49:53
  * @FilePath: \start\source\kernel\cpu\cpu.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,7 @@
 #include "comm/cpu_instr.h"
 #include "cpu/irq.h"
 #include "ipc/mutex.h"
+#include "core/syscall.h"
 static segment_desc_t gdt_table[GDT_TABLE_SIZE];
 static mutex_t gdt_mutex;
 
@@ -79,6 +80,10 @@ void init_gdt(void)
     segment_desc_set(KERNEL_SELECTOR_CS, 0, 0xffffffff, SEG_P_PRESENT | SEG_DPL_0 | SEG_S_NORMAL | SEG_TYPE_CODE | SEG_TYPE_RW | SEG_D);
     segment_desc_set(KERNEL_SELECTOR_DS, 0, 0xffffffff, SEG_P_PRESENT | SEG_DPL_0 | SEG_S_NORMAL | SEG_TYPE_DATA | SEG_TYPE_RW | SEG_D);
 
+    gate_desc_set((gate_desc_t *)(gdt_table + (SELECTOR_SYSCALL >> 3)),KERNEL_SELECTOR_CS,
+    (uint32_t)exception_handler_syscall,
+    GATE_P_PRESENT | GATE_DPL_3 | GATE_TYPE_SYSCALL | SYSCALL_PARAM_COUNT
+    );
     lgdt((uint32_t)gdt_table, sizeof(gdt_table));
 }
 

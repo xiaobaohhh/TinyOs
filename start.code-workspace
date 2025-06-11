@@ -15,7 +15,14 @@
 			"bitmap.h": "c",
 			"klib.h": "c",
 			"os_cfg.h": "c",
-			"mutex.h": "c"
+			"mutex.h": "c",
+			"syscall.h": "c",
+			"lib_syscall.h": "c",
+			"elf.h": "c",
+			"fs.h": "c",
+			"boot_info.h": "c",
+			"cpu.h": "c",
+			"types.h": "c"
 		}
 	}
 }

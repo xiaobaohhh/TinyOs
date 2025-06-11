@@ -213,7 +213,7 @@ universal_task_switch:
     mov %esi, 64(%eax)   # 保存esi到tss.esi
     mov %edi, 68(%eax)   # 保存edi到tss.edi
     mov %ebp, 60(%eax)   # 保存ebp到tss.ebp
-    mov %esp, 56(%eax)   # 保存esp到tss.esp
+    mov %esp, 4(%eax)   # 保存esp到tss.esp0，内核栈都用esp0，esp只在第一次跳出到用户栈的时候用到
     
     # 保存返回地址作为EIP
     mov (%esp), %edx
@@ -237,6 +237,19 @@ universal_task_switch:
     mov %dx, 88(%eax)    # 保存fs到tss.fs
     mov %gs, %dx
     mov %dx, 92(%eax)    # 保存gs到tss.gs
+
+    # mov $USER_SELECTOR_CS, %dx
+    # mov %dx, 76(%eax)    # 保存cs到tss.cs
+    # mov $USER_SELECTOR_DS, %dx
+    # mov %dx, 84(%eax)    # 保存ds到tss.ds
+    # mov $USER_SELECTOR_DS, %dx
+    # mov %dx, 80(%eax)    # 保存ss到tss.ss
+    # mov $USER_SELECTOR_DS, %dx
+    # mov %dx, 72(%eax)    # 保存es到tss.es
+    # mov $USER_SELECTOR_DS, %dx
+    # mov %dx, 88(%eax)    # 保存fs到tss.fs
+    # mov $USER_SELECTOR_DS, %dx
+    # mov %dx, 92(%eax)    # 保存gs到tss.gs
     
     # 保存CR3
     mov %cr3, %edx
@@ -245,7 +258,7 @@ universal_task_switch:
 skip_save_tss:
     # 获取新任务参数
     mov 8(%esp), %eax    # new_task_type
-    cmp $0, %eax
+    cmp $0, (%eax)
     je switch_to_kernel_task
     jmp switch_to_user_task
 
@@ -280,17 +293,31 @@ skip_page_dir_kernel:
     mov 24(%esp), %eax   # new_eflags
     push %eax
     popf
-    mov 20(%esp),%eax
+
+    mov 20(%esp),%ebx
+    mov %esp, %eax
     mov 32(%esp), %esp   # new_esp
+    add $4, %esp
+    push %ebx
+    mov %eax, %esp
+    mov 36(%esp), %eax   # new_eax
+    mov 40(%esp), %ebx   # new_ebx
+    mov 32(%esp), %esp     # 获取原始new_esp
+    
     
     
     
     # 跳转到新任务
-    jmp *%eax        # new_eip
+    ret       # new_eip
 
 switch_to_user_task:
     # 切换到用户任务
-    
+    movl 8(%esp), %eax
+    cmpl $0x01, (%eax)        # 比较8(%esp)与TASK_USER
+    jne  skip_change                # 如果不相等，跳过修改
+    movl $0x00, (%eax)      # 如果相等，设置为TASK_KERNEL
+
+skip_change:
     # 切换页目录
     mov 12(%esp), %eax   # new_cr3
     cmp $0, %eax
@@ -457,6 +484,26 @@ restore_registers:
 
 
 
+    .global exception_handler_syscall
+    .extern do_handler_syscall
+exception_handler_syscall:
+    pusha
+    push %ds
+    push %es
+    push %fs
+    push %gs
+    pushf
 
 
+    mov %esp, %eax
+    push %eax
+    call do_handler_syscall
+    add $(1*4), %esp
+    popf
+    pop %gs
+    pop %fs
+    pop %es
+    pop %ds
+    popa
+    retf $(5 * 4)
     
