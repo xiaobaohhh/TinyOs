@@ -1,0 +1,133 @@
+Date : 2025-06-12 22:19:15
+Directory : e:\ubuntu\diy-x86os\start\start
+Total : 64 files,  11713 codes, 183 comments, 518 blanks, all 12414 lines
+
+Languages
++-------------------------+------------+------------+------------+------------+------------+
+| language                | files      | code       | comment    | blank      | total      |
++-------------------------+------------+------------+------------+------------+------------+
+| Log                     |          3 |      6,486 |          0 |         72 |      6,558 |
+| JSON                    |         18 |      3,132 |          0 |         16 |      3,148 |
+| C                       |         18 |      1,240 |        120 |        207 |      1,567 |
+| CMake                   |         13 |        376 |          0 |         97 |        473 |
+| CMake Cache             |          1 |        324 |          0 |         80 |        404 |
+| JSON with Comments      |          2 |         38 |          0 |          0 |         38 |
+| Shell Script            |          4 |         35 |         37 |         23 |         95 |
+| x86 and x86_64 Assembly |          2 |         34 |          0 |          4 |         38 |
+| Batch                   |          2 |         26 |         26 |         11 |         63 |
+| C++                     |          1 |         22 |          0 |          8 |         30 |
++-------------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                              | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                 |         64 |     11,713 |        183 |        518 |     12,414 |
+| . (Files)                                                                                                         |          3 |      6,493 |          0 |         14 |      6,507 |
+| build                                                                                                             |         31 |      4,456 |         61 |        378 |      4,895 |
+| build (Files)                                                                                                     |          3 |        511 |          0 |         90 |        601 |
+| build\.cmake                                                                                                      |         17 |      2,995 |          0 |         16 |      3,011 |
+| build\.cmake\api                                                                                                  |         17 |      2,995 |          0 |         16 |      3,011 |
+| build\.cmake\api\v1                                                                                               |         17 |      2,995 |          0 |         16 |      3,011 |
+| build\.cmake\api\v1\query                                                                                         |          1 |          1 |          0 |          0 |          1 |
+| build\.cmake\api\v1\query\client-vscode                                                                           |          1 |          1 |          0 |          0 |          1 |
+| build\.cmake\api\v1\reply                                                                                         |         16 |      2,994 |          0 |         16 |      3,010 |
+| build\CMakeFiles                                                                                                  |          6 |        785 |         61 |        237 |      1,083 |
+| build\CMakeFiles (Files)                                                                                          |          2 |         73 |          0 |         71 |        144 |
+| build\CMakeFiles\3.23.1                                                                                           |          4 |        712 |         61 |        166 |        939 |
+| build\CMakeFiles\3.23.1 (Files)                                                                                   |          3 |         79 |          0 |         31 |        110 |
+| build\CMakeFiles\3.23.1\CompilerIdC                                                                               |          1 |        633 |         61 |        135 |        829 |
+| build\source                                                                                                      |          5 |        165 |          0 |         35 |        200 |
+| build\source\applib                                                                                               |          1 |         33 |          0 |          7 |         40 |
+| build\source\boot                                                                                                 |          1 |         33 |          0 |          7 |         40 |
+| build\source\kernel                                                                                               |          1 |         33 |          0 |          7 |         40 |
+| build\source\loader                                                                                               |          1 |         33 |          0 |          7 |         40 |
+| build\source\shell                                                                                                |          1 |         33 |          0 |          7 |         40 |
+| script                                                                                                            |          7 |         71 |         63 |         34 |        168 |
+| source                                                                                                            |         23 |        693 |         59 |         92 |        844 |
+| source\applib                                                                                                     |          5 |        129 |          8 |         17 |        154 |
+| source\kernel                                                                                                     |         16 |        524 |         42 |         69 |        635 |
+| source\kernel (Files)                                                                                             |          1 |          1 |          0 |          0 |          1 |
+| source\kernel\core                                                                                                |          3 |        291 |         26 |         39 |        356 |
+| source\kernel\dev                                                                                                 |          1 |         22 |          0 |          8 |         30 |
+| source\kernel\fs                                                                                                  |          1 |         82 |          0 |          6 |         88 |
+| source\kernel\include                                                                                             |          6 |         67 |         16 |         11 |         94 |
+| source\kernel\include\core                                                                                        |          3 |         28 |          8 |          5 |         41 |
+| source\kernel\include\dev                                                                                         |          1 |         26 |          8 |          5 |         39 |
+| source\kernel\include\fs                                                                                          |          1 |         11 |          0 |          2 |         13 |
+| source\kernel\include\tools                                                                                       |          1 |          2 |          0 |         -1 |          1 |
+| source\kernel\init                                                                                                |          3 |         36 |          0 |          3 |         39 |
+| source\kernel\tools                                                                                               |          1 |         25 |          0 |          2 |         27 |
+| source\shell                                                                                                      |          2 |         40 |          9 |          6 |         55 |
++-------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------+-------------------------+------------+------------+------------+------------+
+| filename                                                                                                          | language                | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------+-------------------------+------------+------------+------------+------------+
+| e:\ubuntu\diy-x86os\start\start\CMakeLists.txt                                                                    | CMake                   |         52 |          0 |         13 |         65 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\query\client-vscode\query.json                                | JSON                    |          1 |          0 |          0 |          1 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cache-v2-770cec9b26aa6e36d00f.json                      | JSON                    |      1,323 |          0 |          1 |      1,324 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cmakeFiles-v1-6d23f08e7732693d08c1.json                 | JSON                    |        121 |          0 |          1 |        122 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\codemodel-v2-4277724396d00838e7f4.json                  | JSON                    |        231 |          0 |          1 |        232 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\directory-.-Debug-d0094a50bb2071803777.json             | JSON                    |         14 |          0 |          1 |         15 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\directory-source.applib-Debug-5e5d462fbfa8010f6a72.json | JSON                    |         14 |          0 |          1 |         15 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\directory-source.boot-Debug-e32ed8e172d18c41a714.json   | JSON                    |         14 |          0 |          1 |         15 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\directory-source.kernel-Debug-4384d93899d7b295e598.json | JSON                    |         14 |          0 |          1 |         15 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\directory-source.loader-Debug-c085dfc97c955badf5e0.json | JSON                    |         14 |          0 |          1 |         15 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\directory-source.shell-Debug-9bcd9f15bf3fe254031f.json  | JSON                    |         14 |          0 |          1 |         15 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\index-2025-06-12T07-23-18-0904.json                     | JSON                    |        132 |          0 |          1 |        133 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-app-Debug-3ea0618f8f3802bd70f4.json              | JSON                    |        164 |          0 |          1 |        165 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-boot-Debug-9ebff6ff46fa48dda285.json             | JSON                    |        170 |          0 |          1 |        171 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-kernel-Debug-0924b1b33176dcff9360.json           | JSON                    |        402 |          0 |          1 |        403 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-loader-Debug-4f600de92d005469f732.json           | JSON                    |        178 |          0 |          1 |        179 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-shell-Debug-230d194daf486c9f3cb6.json            | JSON                    |        141 |          0 |          1 |        142 |
+| e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\toolchains-v1-0345dc3850ce02d89834.json                 | JSON                    |         48 |          0 |          1 |         49 |
+| e:\ubuntu\diy-x86os\start\start\build\CMakeCache.txt                                                              | CMake Cache             |        324 |          0 |         80 |        404 |
+| e:\ubuntu\diy-x86os\start\start\build\CMakeFiles\3.23.1\CMakeASMCompiler.cmake                                    | CMake                   |         14 |          0 |          7 |         21 |
+| e:\ubuntu\diy-x86os\start\start\build\CMakeFiles\3.23.1\CMakeCCompiler.cmake                                      | CMake                   |         55 |          0 |         18 |         73 |
+| e:\ubuntu\diy-x86os\start\start\build\CMakeFiles\3.23.1\CMakeSystem.cmake                                         | CMake                   |         10 |          0 |          6 |         16 |
+| e:\ubuntu\diy-x86os\start\start\build\CMakeFiles\3.23.1\CompilerIdC\CMakeCCompilerId.c                            | C                       |        633 |         61 |        135 |        829 |
+| e:\ubuntu\diy-x86os\start\start\build\CMakeFiles\CMakeError.log                                                   | Log                     |         53 |          0 |         56 |        109 |
+| e:\ubuntu\diy-x86os\start\start\build\CMakeFiles\CMakeOutput.log                                                  | Log                     |         20 |          0 |         15 |         35 |
+| e:\ubuntu\diy-x86os\start\start\build\cmake_install.cmake                                                         | CMake                   |         50 |          0 |         10 |         60 |
+| e:\ubuntu\diy-x86os\start\start\build\compile_commands.json                                                       | JSON                    |        137 |          0 |          0 |        137 |
+| e:\ubuntu\diy-x86os\start\start\build\source\applib\cmake_install.cmake                                           | CMake                   |         33 |          0 |          7 |         40 |
+| e:\ubuntu\diy-x86os\start\start\build\source\boot\cmake_install.cmake                                             | CMake                   |         33 |          0 |          7 |         40 |
+| e:\ubuntu\diy-x86os\start\start\build\source\kernel\cmake_install.cmake                                           | CMake                   |         33 |          0 |          7 |         40 |
+| e:\ubuntu\diy-x86os\start\start\build\source\loader\cmake_install.cmake                                           | CMake                   |         33 |          0 |          7 |         40 |
+| e:\ubuntu\diy-x86os\start\start\build\source\shell\cmake_install.cmake                                            | CMake                   |         33 |          0 |          7 |         40 |
+| e:\ubuntu\diy-x86os\start\start\qemu-debug.log                                                                    | Log                     |      6,413 |          0 |          1 |      6,414 |
+| e:\ubuntu\diy-x86os\start\start\script\img-write-linux.sh                                                         | Shell Script            |         16 |         18 |         10 |         44 |
+| e:\ubuntu\diy-x86os\start\start\script\img-write-osx.sh                                                           | Shell Script            |         16 |         17 |         11 |         44 |
+| e:\ubuntu\diy-x86os\start\start\script\img-write-win.bat                                                          | Batch                   |         15 |         24 |         10 |         49 |
+| e:\ubuntu\diy-x86os\start\start\script\qemu-debug-linux.sh                                                        | Shell Script            |          2 |          1 |          1 |          4 |
+| e:\ubuntu\diy-x86os\start\start\script\qemu-debug-osx.sh                                                          | Shell Script            |          1 |          1 |          1 |          3 |
+| e:\ubuntu\diy-x86os\start\start\script\qemu-debug-win.bat                                                         | Batch                   |         11 |          2 |          1 |         14 |
+| e:\ubuntu\diy-x86os\start\start\script\test.code-workspace                                                        | JSON with Comments      |         10 |          0 |          0 |         10 |
+| e:\ubuntu\diy-x86os\start\start\source\applib\CMakeLists.txt                                                      | CMake                   |          9 |          0 |          3 |         12 |
+| e:\ubuntu\diy-x86os\start\start\source\applib\crt0.S                                                              | x86 and x86_64 Assembly |         10 |          0 |          1 |         11 |
+| e:\ubuntu\diy-x86os\start\start\source\applib\cstart.c                                                            | C                       |         14 |          8 |          2 |         24 |
+| e:\ubuntu\diy-x86os\start\start\source\applib\lib_syscall.c                                                       | C                       |        128 |          0 |          8 |        136 |
+| e:\ubuntu\diy-x86os\start\start\source\applib\lib_syscall.h                                                       | C                       |        -32 |          0 |          3 |        -29 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\CMakeLists.txt                                                      | CMake                   |          1 |          0 |          0 |          1 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\memory.c                                                       | C                       |         78 |         13 |         18 |        109 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\syscall.c                                                      | C                       |         16 |          0 |          2 |         18 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\task.c                                                         | C                       |        197 |         13 |         19 |        229 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\dev\console.h                                                       | C++                     |         22 |          0 |          8 |         30 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\fs\fs.c                                                             | C                       |         82 |          0 |          6 |         88 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\memory.h                                               | C                       |          8 |          0 |          1 |          9 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\syscall.h                                              | C                       |         10 |          8 |          4 |         22 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\task.h                                                 | C                       |         10 |          0 |          0 |         10 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\console.c                                               | C                       |         26 |          8 |          5 |         39 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\fs\fs.h                                                     | C                       |         11 |          0 |          2 |         13 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\tools\klib.h                                                | C                       |          2 |          0 |         -1 |          1 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\init\first_task.c                                                   | C                       |          2 |          0 |          0 |          2 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\init\init.c                                                         | C                       |         10 |          0 |          0 |         10 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\init\start.S                                                        | x86 and x86_64 Assembly |         24 |          0 |          3 |         27 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\tools\klib.c                                                        | C                       |         25 |          0 |          2 |         27 |
+| e:\ubuntu\diy-x86os\start\start\source\shell\CMakeLists.txt                                                       | CMake                   |         20 |          0 |          5 |         25 |
+| e:\ubuntu\diy-x86os\start\start\source\shell\main.c                                                               | C                       |         20 |          9 |          1 |         30 |
+| e:\ubuntu\diy-x86os\start\start\start.code-workspace                                                              | JSON with Comments      |         28 |          0 |          0 |         28 |
+| Total                                                                                                             |                         |     11,713 |        183 |        518 |     12,414 |
++-------------------------------------------------------------------------------------------------------------------+-------------------------+------------+------------+------------+------------+

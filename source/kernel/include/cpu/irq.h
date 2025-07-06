@@ -38,6 +38,9 @@
 #define PIC1_IMR 0xa1
 
 #define IRQ0_TIMER          0x20
+#define IRQ1_KEYBOARD       0x21
+
+#define IRQ14_HARDDISK_PRIMARY (0x20 + 14)
 
 #define PIC0_OCW2 0x20
 #define PIC1_OCW2 0xa0
@@ -93,6 +96,7 @@ void exception_handler_machine_check(void);
 void exception_handler_simd_floating_point(void);
 void exception_handler_virtualization(void);
 void exception_handler_security(void);
+void exception_handler_ide_primary(void);
 
 int irq_install(int irq_num,irq_handler_t handler);
 void irq_enable(int irq_num);

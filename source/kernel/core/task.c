@@ -10,13 +10,45 @@
 #include "core/syscall.h"
 #include "comm/elf.h"
 #include "fs/fs.h"
+#include "comm/types.h"
 static task_manager_t task_manager;
 int need_reschedule = 0;
 static uint32_t idle_task_stack[1024];
 static uint32_t kernel_stack[1024];
 
 static task_t task_table[TASK_COUNT];
-static int task_table_mutex;     
+static mutex_t task_table_mutex;     
+
+int task_alloc_fd(file_t *file)
+{
+    task_t * task = task_current();
+    for(int i = 0; i < TASK_OFILE_NR; i++)
+    {
+        file_t * f = task->file_table[i];
+        if(f == (file_t *)0)
+        {
+            task->file_table[i] = file;
+            return i;
+        }
+    }
+    return -1;
+}
+file_t * task_file(int fd)
+{
+    if(fd >= 0 && fd < TASK_OFILE_NR)
+    {
+        file_t * file = task_current()->file_table[fd];
+        return file;
+    }
+    return (file_t *)0;
+}
+void task_remove_fd(int fd)
+{
+    if(fd > 0 && fd < TASK_OFILE_NR)
+    {
+        task_current()->file_table[fd] = 0;
+    }
+}
 static int tss_init(task_t *task,uint32_t entry,uint32_t esp, int kernel_or_user)
 {
     kernel_memset(&task->tss,0,sizeof(tss_t));
@@ -79,6 +111,7 @@ int kernel_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
     ASSERT(task != (task *)0);
     tss_init(task,entry,esp,0);
 
+    task->is_first_run = 1;
     task->task_type = TASK_KERNEL;
 
     kernel_strncpy(task->name,name,TASK_NAME_SIZE);
@@ -87,12 +120,17 @@ int kernel_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
     task->sleep_ticks = 0;
     task->state = TASK_CREATED;
     task->parent = (task_t *)0;
+    task->heap_start = 0;
+    task->heap_end = 0;
     task->pid = (uint32_t)task;
+    task->status = 0;
     list_node_init(&task->run_node);
     list_node_init(&task->all_node);
     list_node_init(&task->wait_node);
+
+    kernel_memset(task->file_table,0,sizeof(task->file_table));
     irq_state_t state = irq_enter_protection();
-    task_set_ready(task);
+    //task_set_ready(task);
     list_insert_last(&task_manager.task_list,&task->all_node);
     irq_leave_protection(state);
     return 0;
@@ -103,6 +141,7 @@ int user_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
 {
     ASSERT(task != (task *)0);
     task->task_type = TASK_USER;
+    task->is_first_run = 1;
     tss_init(task,entry,esp,1);
     kernel_strncpy(task->name,name,TASK_NAME_SIZE);
     task->time_ticks = TASK_TIME_SLICE_DEFAULT;
@@ -110,15 +149,25 @@ int user_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp)
     task->sleep_ticks = 0;
     task->state = TASK_CREATED;
     task->parent = (task_t *)0;
+    task->heap_start = 0;
+    task->heap_end = 0;
     task->pid = (uint32_t)task;
+    task->status = 0;
     list_node_init(&task->run_node);
     list_node_init(&task->all_node);
     list_node_init(&task->wait_node);
+    kernel_memset(task->file_table,0,sizeof(task->file_table));
     irq_state_t state = irq_enter_protection();
-    task_set_ready(task);
+    //task_set_ready(task);
     list_insert_last(&task_manager.task_list,&task->all_node);
     irq_leave_protection(state);
     return 0;
+}
+void task_start(task_t *task)
+{
+    irq_state_t state = irq_enter_protection();
+    task_set_ready(task);
+    irq_leave_protection(state);
 }
 void simple_switch(uint32_t ** from,uint32_t *to);
 void interrupt_switch(uint32_t ** from,uint32_t *to);
@@ -172,7 +221,9 @@ void task_manager_init()
     task_manager.to_task = (task_t *)0;
     task_manager.need_reschedule = TASK_NOT_NEED_RESCHEDULE ;
 
-    kernel_task_init(&task_manager.idle_task,"idle_task",idle_task_entry,(uint32_t)&idle_task_stack[1024]);
+    kernel_task_init(&task_manager.idle_task,"idle_task",idle_task_entry,&idle_task_stack[1024]);
+    
+    task_start(&task_manager.idle_task);
 }
 
 void task_first_init()
@@ -187,13 +238,16 @@ void task_first_init()
     uint32_t first_start = (uint32_t)first_task_entry;
     kernel_task_init(&task_manager.first_task,"first_task",first_start,first_start + alloc_size);
     task_manager.global_tss.esp0 = task_manager.first_task.tss.esp0;
+    
+    task_manager.first_task.heap_start = (uint32_t )e_first_task;
+    task_manager.first_task.heap_end = (uint32_t )e_first_task;
     write_tr(task_manager.tss_sel);
     task_manager.current_task = &task_manager.first_task;
     mmu_set_page_dir_task(task_manager.current_task);
   
     memory_alloc_page_for(first_start,alloc_size,PTE_P | PTE_W | PTE_U);
     kernel_memcpy((void *)first_start,s_first_task,copy_size);
-
+    task_start(&task_manager.first_task);
 }
 task_t * get_from_task()
 {
@@ -244,12 +298,95 @@ int sys_sched_yield()
         task_set_block(current_task);
         task_set_ready(current_task);
 
-        task_dispatch();
+        schedule_switch();
     }
     irq_leave_protection(state);
     return 0;
 }
 
+void sys_exit(int status)
+{
+    task_t * current_task = task_current();
+    for( int fd = 0; fd < TASK_OFILE_NR; fd++)
+    {
+        file_t * file = current_task->file_table[fd];
+        if(file)
+        {
+            sys_close(fd);
+            current_task->file_table[fd] = (file_t *)0;
+        }
+    }
+    int move_child = 0;
+    mutex_lock(&task_table_mutex);
+    for(int i = 0; i < TASK_COUNT; i++)
+    {
+        task_t * task = task_table + i;
+        if(task->parent == current_task )
+        {
+            task->parent = &task_manager.first_task;
+            if(task->state = TASK_ZOMBIE)
+            {
+                move_child = 1;
+            }
+        }
+    }
+    mutex_unlock(&task_table_mutex);
+    //irq_state_t state = irq_enter_protection();
+
+    task_t * parent = current_task->parent;
+    if(move_child && (parent != &task_manager.first_task))
+    {
+        if(task_manager.first_task.state == TASK_WAITTING)
+        {
+            task_set_ready(&task_manager.first_task);
+        }
+    }
+    if(parent && parent->state == TASK_WAITTING)
+    {
+        task_set_ready(current_task->parent);
+    }
+    current_task->state = TASK_ZOMBIE;
+    current_task->status = status;
+    task_set_block(current_task);
+    //irq_leave_protection(state);
+    schedule_switch();
+    
+    while(1)
+    {
+        hlt();
+    }
+}
+
+int sys_wait(int * status)
+{
+    task_t * current_task = task_current();
+    for(;;)
+    {
+        //mutex_lock(&task_table_mutex);
+        for(int i = 0; i < TASK_COUNT; i++)
+        {
+            task_t * task = task_table + i;
+            if(task->parent == current_task && task->state == TASK_ZOMBIE)
+            {
+                int pid = task->pid;
+                *status = task->status;
+                memory_destroy_uvm(task->tss.cr3);
+                memory_free_page(task->tss.esp0 - MEM_PAGE_SIZE);
+                kernel_memset(task,0,sizeof(task_t));
+                //mutex_unlock(&task_table_mutex);
+                return pid;
+            }
+            
+        }
+        //irq_state_t state = irq_enter_protection();
+        task_set_block(current_task);
+        current_task->state = TASK_WAITTING;
+        schedule_switch();
+        //irq_leave_protection(state);
+
+    }
+    return 0;
+}
 task_t * task_next_run()
 {
     if(list_count(&task_manager.ready_list) == 0)
@@ -266,9 +403,11 @@ task_t * task_next_run()
 
 void schedule_switch()
 {
+    irq_state_t state = irq_enter_protection();
     task_dispatch();
     //do_schedule_switch();
     schedule_next_task();
+    irq_leave_protection(state);
 }
 void task_dispatch()
 {
@@ -312,7 +451,8 @@ void task_time_tick()
         current_task->slice_ticks = current_task->time_ticks;
         task_set_block(current_task);
         task_set_ready(current_task);
-        task_dispatch();
+        //task_dispatch();
+        schedule_switch();
     }
 }
 
@@ -392,14 +532,36 @@ void schedule_next_task() {
         }
         if (next_task && next_task != old ) {
             uint32_t sesp = 0;
+            // if(next_task == &task_manager.idle_task && next_task->is_first_run == 1)
+            // {
+            //     next_task->is_first_run = 0;
+            //     next_task->tss.esp = next_task->tss.esp - (uint32_t)4;
+            //     *(uint32_t *)next_task->tss.esp = next_task->tss.eip;
+            //     next_task->tss.esp = next_task->tss.esp + (uint32_t)4;
+            //     sesp = next_task->tss.esp;
+            // }
+            // else
+            // {
+            //     sesp = next_task->tss.esp0;
+            // }
+            
             if(next_task->task_type == TASK_USER)
             {
+                sesp = next_task->tss.esp;
+            }
+            else if(next_task == &task_manager.idle_task && next_task->is_first_run == 1)
+            {
+                next_task->is_first_run = 0;
+                next_task->tss.esp = next_task->tss.esp - (uint32_t)4;
+                *(uint32_t *)next_task->tss.esp = next_task->tss.eip;
+                //next_task->tss.esp = next_task->tss.esp + (uint32_t)4;
                 sesp = next_task->tss.esp;
             }
             else
             {
                 sesp = next_task->tss.esp0;
             }
+            
             task_manager.global_tss.esp0 = next_task->esp0_start;//这一行很重要 这是每个任务内核栈的栈底
         // 一个函数搞定所有切换！
         universal_task_switch(
@@ -420,7 +582,7 @@ void schedule_next_task() {
             next_task->tss.edi,                         // 新任务EDI寄存器
             next_task->tss.ebp                          // 新任务EBP寄存器
 
-        );
+        );  
     }
 }
 
@@ -438,7 +600,7 @@ static task_t * task_alloc()
             break;
         }
     }
-    mutex_unlock(&task_table_mutex);
+mutex_unlock(&task_table_mutex);
     return task;
 }
 
@@ -449,6 +611,19 @@ static void task_free(task_t *task)
     mutex_unlock(&task_table_mutex);
 }
 
+static copy_opended_files(task_t * child_task)
+{
+    task_t * parent = task_current();
+    for(int i = 0; i < TASK_OFILE_NR; i++)
+    {
+        file_t * file = parent->file_table[i];
+        if(file)
+        {
+            file_inc_ref(file);
+            child_task->file_table[i] = file;
+        }
+    }
+}
 int sys_fork()
 {
     task_t * parent = task_current();
@@ -461,6 +636,8 @@ int sys_fork()
     
     
     int err = user_task_init(child,parent->name,frame->eip,frame->esp + sizeof(uint32_t) * SYSCALL_PARAM_COUNT);
+    
+    copy_opended_files(child);
     if(err < 0)
     {
         goto fork_failed;
@@ -486,6 +663,7 @@ int sys_fork()
     }
     child->parent = parent;
     // tss->cr3 = parent->tss.cr3;
+    task_start(child);
     return (uint32_t)child;
 
     
@@ -570,6 +748,9 @@ static uint32_t load_elf_file(task_t *task,char *name,uint32_t new_page_dir)
             log_printf("load elf file failed,load_phdr failed");
             goto load_failed;
         }
+
+        task->heap_start = elf_phdr.p_vaddr + elf_phdr.p_memsz;
+        task->heap_end = task->heap_start;
 
     }
     

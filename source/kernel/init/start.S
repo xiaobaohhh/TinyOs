@@ -97,8 +97,8 @@ exception_handler_time:
     popa
 
     add $(2*4), %esp
-#   call do_schedule_switch
-    call schedule_next_task
+#    call do_schedule_switch
+#    call schedule_next_task
     iret 
 
 
@@ -133,6 +133,37 @@ exception_handler_page_fault:
 
     iret 
 
+.text
+    .extern do_handler_ide_primary
+    .global exception_handler_ide_primary
+exception_handler_ide_primary:
+
+    push $0
+
+    push $0x2e
+    pusha
+    push %ds
+    push %es
+    push %fs
+    push %gs
+    # 设置内核段寄存器
+    mov $KERNEL_SELECTOR_DS, %ax
+    mov %ax, %ds
+    mov %ax, %es
+    mov %ax, %fs
+    mov %ax, %gs
+    push %esp
+    call do_handler_ide_primary
+    add $(1*4), %esp
+    pop %gs
+    pop %fs
+    pop %es
+    pop %ds
+    popa
+
+    add $(2*4), %esp
+
+    iret 
 
     
 exception_handler unknown,-1,0
@@ -158,7 +189,11 @@ exception_handler simd_floating_point,19,0
 exception_handler virtualization,20,0
 exception_handler security,21,1
 
+
+exception_handler kbd,0x21,0
 /*
+exception_handler ide_primary,0x2e,0
+
 exception_handler time,0x20,0
 */
 
@@ -197,6 +232,7 @@ simple_switch:
 # new_task_type: 0=内核任务, 1=用户任务
     .global universal_task_switch
 universal_task_switch:
+    
     # 保存当前TSS (如果需要)
     mov 4(%esp), %eax    # save_tss_ptr
     cmp $0, %eax
@@ -294,15 +330,21 @@ skip_page_dir_kernel:
     push %eax
     popf
 
+
+    mov 32(%esp), %esp   # new_esp
+    /*
     mov 20(%esp),%ebx
     mov %esp, %eax
-    mov 32(%esp), %esp   # new_esp
+    
+    
     add $4, %esp
-    push %ebx
+    push %ebx  # 这个地方120004 改写了120000
+    
     mov %eax, %esp
     mov 36(%esp), %eax   # new_eax
     mov 40(%esp), %ebx   # new_ebx
     mov 32(%esp), %esp     # 获取原始new_esp
+    */
     
     
     

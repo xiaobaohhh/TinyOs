@@ -1,0 +1,36 @@
+"filename", "language", "JSON with Comments", "C", "x86 and x86_64 Assembly", "JSON", "C++", "Log", "comment", "blank", "total"
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cache-v2-2aef6ed75addefb942d3.json", "JSON", 0, 0, 0, 1339, 0, 0, 0, 1, 1340
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cache-v2-770cec9b26aa6e36d00f.json", "JSON", 0, 0, 0, -1323, 0, 0, 0, -1, -1324
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cmakeFiles-v1-6d23f08e7732693d08c1.json", "JSON", 0, 0, 0, -121, 0, 0, 0, -1, -122
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\cmakeFiles-v1-7ada7c5a1a80f68c4686.json", "JSON", 0, 0, 0, 475, 0, 0, 0, 1, 476
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\codemodel-v2-4277724396d00838e7f4.json", "JSON", 0, 0, 0, -231, 0, 0, 0, -1, -232
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\codemodel-v2-6db753ea7fea8aba5efe.json", "JSON", 0, 0, 0, 231, 0, 0, 0, 1, 232
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\index-2025-06-12T07-23-18-0904.json", "JSON", 0, 0, 0, -132, 0, 0, 0, -1, -133
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\index-2025-06-15T05-47-31-0109.json", "JSON", 0, 0, 0, 132, 0, 0, 0, 1, 133
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-kernel-Debug-0924b1b33176dcff9360.json", "JSON", 0, 0, 0, -402, 0, 0, 0, -1, -403
+"e:\ubuntu\diy-x86os\start\start\build\.cmake\api\v1\reply\target-kernel-Debug-9cb61dca62dde81ec3b7.json", "JSON", 0, 0, 0, 458, 0, 0, 0, 1, 459
+"e:\ubuntu\diy-x86os\start\start\build\compile_commands.json", "JSON", 0, 0, 0, 20, 0, 0, 0, 0, 20
+"e:\ubuntu\diy-x86os\start\start\qemu-debug.log", "Log", 0, 0, 0, 0, 0, 956243, 0, 0, 956243
+"e:\ubuntu\diy-x86os\start\start\source\kernel\core\memory.c", "C", 0, 2, 0, 0, 0, 0, 0, -1, 1
+"e:\ubuntu\diy-x86os\start\start\source\kernel\core\task.c", "C", 0, 9, 0, 0, 0, 0, 12, 2, 23
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\console.c", "C", 0, 304, 0, 0, 0, 0, 22, 22, 348
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\console.h", "C++", 0, 0, 0, 0, -22, 0, 0, -8, -30
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\dev.c", "C", 0, 100, 0, 0, 0, 0, 0, 14, 114
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\kbd.c", "C", 0, 203, 0, 0, 0, 0, 23, 8, 234
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\tty.c", "C", 0, 31, 0, 0, 0, 0, 0, 10, 41
+"e:\ubuntu\diy-x86os\start\start\source\kernel\fs\fs.c", "C", 0, 1, 0, 0, 0, 0, 8, 0, 9
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\task.h", "C", 0, 1, 0, 0, 0, 0, 0, 0, 1
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\cpu\irq.h", "C", 0, 1, 0, 0, 0, 0, 0, 1, 2
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\console.c", "C", 0, -26, 0, 0, 0, 0, -8, -5, -39
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\console.h", "C++", 0, 0, 0, 0, 82, 0, 0, 12, 94
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\dev.h", "C++", 0, 0, 0, 0, 33, 0, 0, 7, 40
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\kbd.h", "C", 0, 58, 0, 0, 0, 0, 0, 13, 71
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\tty.h", "C++", 0, 0, 0, 0, 5, 0, 0, 3, 8
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\tools\klib.h", "C", 0, 0, 0, 0, 0, 0, 8, 0, 8
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\first_task.c", "C", 0, -11, 0, 0, 0, 0, -11, -2, -24
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\init.c", "C", 0, 1, 0, 0, 0, 0, -38, 3, -34
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\start.S", "x86 and x86_64 Assembly", 0, 0, 3, 0, 0, 0, 0, 5, 8
+"e:\ubuntu\diy-x86os\start\start\source\kernel\tools\log.c", "C", 0, 7, 0, 0, 0, 0, 1, 1, 9
+"e:\ubuntu\diy-x86os\start\start\source\shell\main.c", "C", 0, -3, 0, 0, 0, 0, -1, 0, -4
+"e:\ubuntu\diy-x86os\start\start\start.code-workspace", "JSON with Comments", 2, 0, 0, 0, 0, 0, 0, 0, 2
+"Total", "-", 2, 678, 3, 446, 98, 956243, 16, 85, 957571

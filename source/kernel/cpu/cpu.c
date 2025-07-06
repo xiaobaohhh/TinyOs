@@ -45,30 +45,30 @@ void gate_desc_set(gate_desc_t * gate_desc, uint16_t selector, uint32_t offset, 
 
 int gdt_alloc_desc(void)
 {
-    irq_state_t state = irq_enter_protection();
-    //mutex_lock(&gdt_mutex);
+    //irq_state_t state = irq_enter_protection();
+    mutex_lock(&gdt_mutex);
     for (int i = 1; i < GDT_TABLE_SIZE; i++)
     {
         if(gdt_table[i].attr == 0)
         {
-            //mutex_unlock(&gdt_mutex);
-            irq_leave_protection(state);
+            mutex_unlock(&gdt_mutex);
+            //irq_leave_protection(state);
             return i * sizeof(segment_desc_t);
         }
         
     }
-    //mutex_unlock(&gdt_mutex);
-    irq_leave_protection(state);
+    mutex_unlock(&gdt_mutex);
+    //irq_leave_protection(state);
     return -1;
 }
 
 void gdt_free_desc(int selector)
 {
-    //mutex_lock(&gdt_mutex);
-    irq_state_t state = irq_enter_protection();
+    mutex_lock(&gdt_mutex);
+    //irq_state_t state = irq_enter_protection();
     gdt_table[selector / sizeof(segment_desc_t)].attr = 0;
-    //mutex_unlock(&gdt_mutex);
-    irq_leave_protection(state);
+    mutex_unlock(&gdt_mutex);
+    //irq_leave_protection(state);
 }
 void init_gdt(void)
 {

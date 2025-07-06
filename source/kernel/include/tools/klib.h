@@ -1,3 +1,11 @@
+/*
+ * @Author: xiaobao xiaobaogenji@163.com
+ * @Date: 2025-05-29 14:05:22
+ * @LastEditors: xiaobao xiaobaogenji@163.com
+ * @LastEditTime: 2025-06-13 13:06:32
+ * @FilePath: \start\source\kernel\include\tools\klib.h
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 #ifndef KLIB_H
 #define KLIB_H
 #include <stdarg.h>
@@ -17,7 +25,7 @@ int kernel_strncmp (const char *str1, const char *str2, int size);
 int kernel_strlen (const char *str);
 
 void kernel_memcpy (void *dest, void *src, int size);
-void kernel_memset (void *dest, int c, int size);
+void kernel_memset (void *dest, uint8_t c, int size);
 int kernel_memcmp (void *d1, void *d2, int size);
 
 void kernel_vsprintf (char *buf, const char *fmt, va_list args);

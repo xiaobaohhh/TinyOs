@@ -2,7 +2,7 @@
  * @Author: xiaobao xiaobaogenji@163.com
  * @Date: 2025-06-03 13:45:11
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-11 14:33:13
+ * @LastEditTime: 2025-06-14 16:48:11
  * @FilePath: \start\source\kernel\core\memory.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,7 +12,7 @@
 #include "tools/klib.h"
 #include "cpu/mmu.h"
 #include "cpu/irq.h"
-
+#include "dev/console.h"
 static addr_alloc_t paddr_alloc;
 
 static pde_t kernel_page_dir[PDE_CNT] __attribute__((aligned(MEM_PAGE_SIZE)));
@@ -31,26 +31,26 @@ static void addr_alloc_init(addr_alloc_t *addr_alloc,uint8_t* bits,
 static uint32_t addr_alloc_page(addr_alloc_t *addr_alloc, int page_count)
 {
     uint32_t  addr = 0;
-    //mutex_lock(&addr_alloc->mutex);
-    irq_state_t state = irq_enter_protection();
+    mutex_lock(&addr_alloc->mutex);
+    //irq_state_t state = irq_enter_protection();
     int page_index = bitmap_alloc_nbits(&addr_alloc->bitmap, 0, page_count);
     if (page_index >= 0)
     {
         addr = addr_alloc->start + page_index * addr_alloc->page_size;
     }
-    irq_leave_protection(state);
-    //mutex_unlock(&addr_alloc->mutex);
+    //irq_leave_protection(state);
+    mutex_unlock(&addr_alloc->mutex);
     return addr;
 }
 
 static void addr_free_page(addr_alloc_t *addr_alloc, uint32_t addr, int page_count)
 {
-    //mutex_lock(&addr_alloc->mutex);
-    irq_state_t state = irq_enter_protection();
+    mutex_lock(&addr_alloc->mutex);
+    //irq_state_t state = irq_enter_protection();
     uint32_t page_index = (addr - addr_alloc->start) / addr_alloc->page_size;
     bitmap_set_bit(&addr_alloc->bitmap, page_index, page_count,0);
-    irq_leave_protection(state);
-    //mutex_unlock(&addr_alloc->mutex);
+    //irq_leave_protection(state);
+    mutex_unlock(&addr_alloc->mutex);
 }
 
 void show_mem_info(boot_info_t *boot_info)
@@ -129,6 +129,7 @@ void create_kernel_table(void)
         {kernel_base,s_text,kernel_base,PTE_W},
         {s_text,e_text,s_text,0},
         {s_data,(void *)MEM_EBDA_START,s_data,PTE_W},
+        {(void *)CONSOLE_DISP_ADDR,(void *)(CONSOLE_DISP_END),(void *)CONSOLE_DISP_ADDR,PTE_W},
         {(void *)MEM_EXT_START,(void *)MEM_EXT_END,(void *)MEM_EXT_START,PTE_W}
     };
     for(int i = 0; i < sizeof(kernel_map) / sizeof(memory_map_t); i++)
@@ -360,4 +361,50 @@ int memory_copy_uvm_data(uint32_t to, uint32_t page_dir, uint32_t from, uint32_t
   }
 
   return 0;
+}
+
+char * sys_sbrk(int incr) {
+    task_t * task = task_current();
+    char * pre_heap_end = (char * )task->heap_end;
+    int pre_incr = incr;
+
+    ASSERT(incr >= 0);
+
+    // 如果地址为0，则返回有效的heap区域的顶端
+    if (incr == 0) {
+        //log_printf("sbrk(0): end = 0x%x", pre_heap_end);
+        return pre_heap_end;
+    } 
+    
+    uint32_t start = task->heap_end;
+    uint32_t end = start + incr;
+
+    // 起始偏移非0
+    int start_offset = start % MEM_PAGE_SIZE;
+    if (start_offset) {
+        // 不超过1页，只调整
+        if (start_offset + incr <= MEM_PAGE_SIZE) {
+            task->heap_end = end;
+            return pre_heap_end;
+        } else {
+            // 超过1页，先只调本页的
+            uint32_t curr_size = MEM_PAGE_SIZE - start_offset;
+            start += curr_size;
+            incr -= curr_size;
+        }
+    }
+
+    // 处理其余的，起始对齐的页边界的
+    if (incr) {
+        uint32_t curr_size = end - start;
+        int err = memory_alloc_page_for(start, curr_size, PTE_P | PTE_U | PTE_W);
+        if (err < 0) {
+            log_printf("sbrk: alloc mem failed.");
+            return (char *)-1;
+        }
+    }
+
+    //log_printf("sbrk(%d): end = 0x%x", pre_incr, end);
+    task->heap_end = end;
+    return (char * )pre_heap_end;        
 }

@@ -2,7 +2,7 @@
  * @Author: xiaobao xiaobaogenji@163.com
  * @Date: 2025-06-03 13:39:44
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-11 14:32:43
+ * @LastEditTime: 2025-06-12 15:25:58
  * @FilePath: \start\source\kernel\include\core\memory.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -53,4 +53,5 @@ void memory_destroy_uvm(uint32_t vum);
 uint32_t memory_get_paddr(uint32_t page_dir,uint32_t vaddr);
 
 int memory_copy_uvm_data(uint32_t to,uint32_t page_dir,uint32_t from,uint32_t size);
+char * sys_sbrk(int incr);
 #endif

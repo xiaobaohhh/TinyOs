@@ -2,7 +2,7 @@ The target system is: Generic - 0.0.0 -
 The host system is: Windows - 10.0.19045 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: E:/BaiduNetdiskDownload/windows/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe 
-Build flags: -g;-c;-O0;-m32;-DRELEASE;-fno-pie;-fno-stack-protector;-fno-asynchronous-unwind-tables
+Build flags: -g;-c;-O0;-m32;-DRELEASE;-fno-pie;-fno-stack-protector;-fno-asynchronous-unwind-tables;
 Id flags:  
 
 The output was:
@@ -16,9 +16,9 @@ The C compiler identification is GNU, found in "E:/ubuntu/diy-x86os/start/start/
 Determining if the C compiler works passed with the following output:
 Change Dir: E:/ubuntu/diy-x86os/start/start/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/PROGRA~1/CMake/bin/ninja.exe cmTC_efd5f && [1/2] Building C object CMakeFiles/cmTC_efd5f.dir/testCCompiler.c.obj
-[2/2] Linking C executable cmTC_efd5f
-x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_efd5f.dir/testCCompiler.c.obj: linker input file unused because linking not done
+Run Build Command(s):C:/PROGRA~1/CMake/bin/ninja.exe cmTC_5f9fc && [1/2] Building C object CMakeFiles/cmTC_5f9fc.dir/testCCompiler.c.obj
+[2/2] Linking C executable cmTC_5f9fc
+x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_5f9fc.dir/testCCompiler.c.obj: linker input file unused because linking not done
 
 
 

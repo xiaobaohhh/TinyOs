@@ -77,7 +77,7 @@ void kernel_memcpy (void *dest, void *src, int size)
     }
 }
 
-void kernel_memset (void *dest, int c, int size)
+void kernel_memset (void *dest, uint8_t c, int size)
 {
     if(!dest || size <= 0)
     {
@@ -86,7 +86,7 @@ void kernel_memset (void *dest, int c, int size)
     uint8_t *d = (uint8_t *)dest;
     while(size--)
     {
-        *d++ = (uint8_t)c;
+        *d++ = c;
     }
 }
 

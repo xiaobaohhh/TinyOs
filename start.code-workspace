@@ -1,7 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "C:/Users/xiaobao/Desktop/杂/开题"
+		},
+		{
+			"path": "../../../../emulation"
 		}
 	],
 	"settings": {
@@ -22,7 +25,15 @@
 			"fs.h": "c",
 			"boot_info.h": "c",
 			"cpu.h": "c",
-			"types.h": "c"
+			"types.h": "c",
+			"kbd.h": "c",
+			"stdio.h": "c",
+			"dev.h": "c",
+			"tty.h": "c",
+			"file.h": "c",
+			"console.h": "c",
+			"utility": "c",
+			"devfs.h": "c"
 		}
 	}
 }

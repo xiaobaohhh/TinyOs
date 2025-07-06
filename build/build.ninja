@@ -81,14 +81,14 @@ build cmake_object_order_depends_target_boot: phony || source/boot/CMakeFiles/bo
 build source/boot/CMakeFiles/boot.dir/start.S.obj: ASM_COMPILER__boot_Debug E$:/ubuntu/diy-x86os/start/start/source/boot/start.S || cmake_object_order_depends_target_boot
   DEP_FILE = source\boot\CMakeFiles\boot.dir\start.S.obj.d
   FLAGS = -m32 -g  -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\boot\CMakeFiles\boot.dir
   OBJECT_FILE_DIR = source\boot\CMakeFiles\boot.dir
 
 build source/boot/CMakeFiles/boot.dir/boot.c.obj: C_COMPILER__boot_Debug E$:/ubuntu/diy-x86os/start/start/source/boot/boot.c || cmake_object_order_depends_target_boot
   DEP_FILE = source\boot\CMakeFiles\boot.dir\boot.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\boot\CMakeFiles\boot.dir
   OBJECT_FILE_DIR = source\boot\CMakeFiles\boot.dir
 
@@ -101,10 +101,10 @@ build source/boot/CMakeFiles/boot.dir/boot.c.obj: C_COMPILER__boot_Debug E$:/ubu
 # Link the executable source\boot\boot
 
 build source/boot/boot: C_EXECUTABLE_LINKER__boot_Debug source/boot/CMakeFiles/boot.dir/start.S.obj source/boot/CMakeFiles/boot.dir/boot.c.obj
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
   LINK_FLAGS = -m elf_i386  -Ttext=0x7c00  --section-start boot_end=0x7dfe
   OBJECT_DIR = source\boot\CMakeFiles\boot.dir
-  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\boot && x86_64-elf-objcopy -O binary boot.elf E:/ubuntu/diy-x86os/start/start/../../image/boot.bin && x86_64-elf-objdump -x -d -S -m i8086 E:/ubuntu/diy-x86os/start/start/build/source/boot/boot.elf > boot_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/boot/boot.elf > boot_elf.txt"
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\boot && x86_64-elf-objcopy -O binary boot.elf E:/ubuntu/diy-x86os/start/start/../../image/boot.bin && x86_64-elf-objdump -x -d -m i8086 E:/ubuntu/diy-x86os/start/start/build/source/boot/boot.elf > boot_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/boot/boot.elf > boot_elf.txt"
   PRE_LINK = cd .
   TARGET_FILE = source\boot\boot
   TARGET_PDB = boot.dbg
@@ -150,21 +150,21 @@ build cmake_object_order_depends_target_loader: phony || source/loader/CMakeFile
 build source/loader/CMakeFiles/loader.dir/start.S.obj: ASM_COMPILER__loader_Debug E$:/ubuntu/diy-x86os/start/start/source/loader/start.S || cmake_object_order_depends_target_loader
   DEP_FILE = source\loader\CMakeFiles\loader.dir\start.S.obj.d
   FLAGS = -m32 -g  -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
   OBJECT_FILE_DIR = source\loader\CMakeFiles\loader.dir
 
 build source/loader/CMakeFiles/loader.dir/loader_16.c.obj: C_COMPILER__loader_Debug E$:/ubuntu/diy-x86os/start/start/source/loader/loader_16.c || cmake_object_order_depends_target_loader
   DEP_FILE = source\loader\CMakeFiles\loader.dir\loader_16.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
   OBJECT_FILE_DIR = source\loader\CMakeFiles\loader.dir
 
 build source/loader/CMakeFiles/loader.dir/loader_32.c.obj: C_COMPILER__loader_Debug E$:/ubuntu/diy-x86os/start/start/source/loader/loader_32.c || cmake_object_order_depends_target_loader
   DEP_FILE = source\loader\CMakeFiles\loader.dir\loader_32.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
   OBJECT_FILE_DIR = source\loader\CMakeFiles\loader.dir
 
@@ -177,10 +177,10 @@ build source/loader/CMakeFiles/loader.dir/loader_32.c.obj: C_COMPILER__loader_De
 # Link the executable source\loader\loader
 
 build source/loader/loader: C_EXECUTABLE_LINKER__loader_Debug source/loader/CMakeFiles/loader.dir/start.S.obj source/loader/CMakeFiles/loader.dir/loader_16.c.obj source/loader/CMakeFiles/loader.dir/loader_32.c.obj
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
   LINK_FLAGS = -m elf_i386  -Ttext=0x8000
   OBJECT_DIR = source\loader\CMakeFiles\loader.dir
-  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\loader && x86_64-elf-objcopy -O binary loader.elf E:/ubuntu/diy-x86os/start/start/../../image/loader.bin && x86_64-elf-objdump -x -d -S -m i8086 E:/ubuntu/diy-x86os/start/start/build/source/loader/loader.elf > loader_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/loader/loader.elf > loader_elf.txt"
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\loader && x86_64-elf-objcopy -O binary loader.elf E:/ubuntu/diy-x86os/start/start/../../image/loader.bin && x86_64-elf-objdump -x -d -m i8086 E:/ubuntu/diy-x86os/start/start/build/source/loader/loader.elf > loader_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/loader/loader.elf > loader_elf.txt"
   PRE_LINK = cd .
   TARGET_FILE = source\loader\loader
   TARGET_PDB = loader.dbg
@@ -221,131 +221,194 @@ build source/loader/rebuild_cache: phony source/loader/CMakeFiles/rebuild_cache.
 #############################################
 # Order-only phony target for kernel
 
-build cmake_object_order_depends_target_kernel: phony || source/kernel/CMakeFiles/kernel.dir
+build cmake_object_order_depends_target_kernel: phony || cmake_object_order_depends_target_app
 
 build source/kernel/CMakeFiles/kernel.dir/init/start.S.obj: ASM_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/start.S || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\start.S.obj.d
   FLAGS = -m32 -g  -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
 
 build source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/memory.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\memory.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
 
 build source/kernel/CMakeFiles/kernel.dir/core/syscall.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/syscall.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\syscall.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
 
 build source/kernel/CMakeFiles/kernel.dir/core/task.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/core/task.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\core\task.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\core
 
 build source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/cpu/cpu.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\cpu\cpu.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\cpu
 
 build source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/cpu/irq.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\cpu\irq.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\cpu
 
 build source/kernel/CMakeFiles/kernel.dir/cpu/mmu.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/cpu/mmu.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\cpu\mmu.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\cpu
 
-build source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/time.c || cmake_object_order_depends_target_kernel
-  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\time.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+build source/kernel/CMakeFiles/kernel.dir/dev/console.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/console.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\console.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
 
+build source/kernel/CMakeFiles/kernel.dir/dev/dev.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/dev.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\dev.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
+
+build source/kernel/CMakeFiles/kernel.dir/dev/disk.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/disk.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\disk.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
+
+build source/kernel/CMakeFiles/kernel.dir/dev/kbd.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/kbd.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\kbd.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
+
+build source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/time.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\time.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
+
+build source/kernel/CMakeFiles/kernel.dir/dev/tty.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/dev/tty.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\dev\tty.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\dev
+
+build source/kernel/CMakeFiles/kernel.dir/fs/devfs/devfs.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/fs/devfs/devfs.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\fs\devfs\devfs.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\fs\devfs
+
+build source/kernel/CMakeFiles/kernel.dir/fs/fatfs/fatfs.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/fs/fatfs/fatfs.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\fs\fatfs\fatfs.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\fs\fatfs
+
+build source/kernel/CMakeFiles/kernel.dir/fs/file.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/fs/file.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\fs\file.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\fs
+
 build source/kernel/CMakeFiles/kernel.dir/fs/fs.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/fs/fs.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\fs\fs.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\fs
 
 build source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/first_task.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\first_task.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
 
 build source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj: ASM_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/first_task_entry.S || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\first_task_entry.S.obj.d
   FLAGS = -m32 -g  -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
 
 build source/kernel/CMakeFiles/kernel.dir/init/init.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/init.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\init.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
+  OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
+
+build source/kernel/CMakeFiles/kernel.dir/init/lib_syscall.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/init/lib_syscall.c || cmake_object_order_depends_target_kernel
+  DEP_FILE = source\kernel\CMakeFiles\kernel.dir\init\lib_syscall.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\init
 
 build source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/ipc/mutex.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\ipc\mutex.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\ipc
 
 build source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/ipc/sem.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\ipc\sem.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\ipc
 
 build source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/bitmap.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\bitmap.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
 
 build source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/klib.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\klib.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
 
 build source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/list.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\list.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
 
 build source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj: C_COMPILER__kernel_Debug E$:/ubuntu/diy-x86os/start/start/source/kernel/tools/log.c || cmake_object_order_depends_target_kernel
   DEP_FILE = source\kernel\CMakeFiles\kernel.dir\tools\log.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
   OBJECT_FILE_DIR = source\kernel\CMakeFiles\kernel.dir\tools
 
@@ -357,11 +420,11 @@ build source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj: C_COMPILER__kernel_De
 #############################################
 # Link the executable source\kernel\kernel
 
-build source/kernel/kernel: C_EXECUTABLE_LINKER__kernel_Debug source/kernel/CMakeFiles/kernel.dir/init/start.S.obj source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj source/kernel/CMakeFiles/kernel.dir/core/syscall.c.obj source/kernel/CMakeFiles/kernel.dir/core/task.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/mmu.c.obj source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj source/kernel/CMakeFiles/kernel.dir/fs/fs.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj source/kernel/CMakeFiles/kernel.dir/init/init.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  LINK_FLAGS = -m elf_i386  -T E:/ubuntu/diy-x86os/start/start/source/kernel/kernel.lds
+build source/kernel/kernel: C_EXECUTABLE_LINKER__kernel_Debug source/kernel/CMakeFiles/kernel.dir/init/start.S.obj source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj source/kernel/CMakeFiles/kernel.dir/core/syscall.c.obj source/kernel/CMakeFiles/kernel.dir/core/task.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj source/kernel/CMakeFiles/kernel.dir/cpu/mmu.c.obj source/kernel/CMakeFiles/kernel.dir/dev/console.c.obj source/kernel/CMakeFiles/kernel.dir/dev/dev.c.obj source/kernel/CMakeFiles/kernel.dir/dev/disk.c.obj source/kernel/CMakeFiles/kernel.dir/dev/kbd.c.obj source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj source/kernel/CMakeFiles/kernel.dir/dev/tty.c.obj source/kernel/CMakeFiles/kernel.dir/fs/devfs/devfs.c.obj source/kernel/CMakeFiles/kernel.dir/fs/fatfs/fatfs.c.obj source/kernel/CMakeFiles/kernel.dir/fs/file.c.obj source/kernel/CMakeFiles/kernel.dir/fs/fs.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj source/kernel/CMakeFiles/kernel.dir/init/init.c.obj source/kernel/CMakeFiles/kernel.dir/init/lib_syscall.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj || source/applib/libapp.a
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  LINK_FLAGS = -m elf_i386  -T E:/ubuntu/diy-x86os/start/start/source/kernel/kernel.lds -L E:/ubuntu/diy-x86os/start/start/build/source/applib/
   OBJECT_DIR = source\kernel\CMakeFiles\kernel.dir
-  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\kernel && x86_64-elf-objcopy -S kernel.elf E:/ubuntu/diy-x86os/start/start/../../image/kernel.elf && x86_64-elf-objdump -x -d -S -m i386 E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf > kernel_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf > kernel_elf.txt"
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\kernel && x86_64-elf-objcopy -S kernel.elf E:/ubuntu/diy-x86os/start/start/../../image/kernel.elf && x86_64-elf-objdump -x -d -m i386 E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf > kernel_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf > kernel_elf.txt"
   PRE_LINK = cd .
   TARGET_FILE = source\kernel\kernel
   TARGET_PDB = kernel.dbg
@@ -407,14 +470,21 @@ build cmake_object_order_depends_target_app: phony || source/applib/CMakeFiles/a
 build source/applib/CMakeFiles/app.dir/crt0.S.obj: ASM_COMPILER__app_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/crt0.S || cmake_object_order_depends_target_app
   DEP_FILE = source\applib\CMakeFiles\app.dir\crt0.S.obj.d
   FLAGS = -m32 -g  -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\applib\CMakeFiles\app.dir
   OBJECT_FILE_DIR = source\applib\CMakeFiles\app.dir
 
 build source/applib/CMakeFiles/app.dir/cstart.c.obj: C_COMPILER__app_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/cstart.c || cmake_object_order_depends_target_app
   DEP_FILE = source\applib\CMakeFiles\app.dir\cstart.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
+  OBJECT_DIR = source\applib\CMakeFiles\app.dir
+  OBJECT_FILE_DIR = source\applib\CMakeFiles\app.dir
+
+build source/applib/CMakeFiles/app.dir/lib_syscall.c.obj: C_COMPILER__app_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/lib_syscall.c || cmake_object_order_depends_target_app
+  DEP_FILE = source\applib\CMakeFiles\app.dir\lib_syscall.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include
   OBJECT_DIR = source\applib\CMakeFiles\app.dir
   OBJECT_FILE_DIR = source\applib\CMakeFiles\app.dir
 
@@ -426,10 +496,10 @@ build source/applib/CMakeFiles/app.dir/cstart.c.obj: C_COMPILER__app_Debug E$:/u
 #############################################
 # Link the static library source\applib\libapp.a
 
-build source/applib/libapp.a: C_STATIC_LIBRARY_LINKER__app_Debug source/applib/CMakeFiles/app.dir/crt0.S.obj source/applib/CMakeFiles/app.dir/cstart.c.obj
-  LANGUAGE_COMPILE_FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+build source/applib/libapp.a: C_STATIC_LIBRARY_LINKER__app_Debug source/applib/CMakeFiles/app.dir/crt0.S.obj source/applib/CMakeFiles/app.dir/cstart.c.obj source/applib/CMakeFiles/app.dir/lib_syscall.c.obj
+  LANGUAGE_COMPILE_FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
   OBJECT_DIR = source\applib\CMakeFiles\app.dir
-  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\applib && x86_64-elf-objdump -x -d -S -m i386 E:/ubuntu/diy-x86os/start/start/build/source/applib/libapp.a > app_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/applib/libapp.a > app_elf.txt"
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\applib && x86_64-elf-objdump -x -d -m i386 E:/ubuntu/diy-x86os/start/start/build/source/applib/libapp.a > app_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/applib/libapp.a > app_elf.txt"
   PRE_LINK = cd .
   TARGET_FILE = source\applib\libapp.a
   TARGET_PDB = app.a.dbg
@@ -474,8 +544,8 @@ build cmake_object_order_depends_target_shell: phony || cmake_object_order_depen
 
 build source/shell/CMakeFiles/shell.dir/main.c.obj: C_COMPILER__shell_Debug E$:/ubuntu/diy-x86os/start/start/source/shell/main.c || cmake_object_order_depends_target_shell
   DEP_FILE = source\shell\CMakeFiles\shell.dir\main.c.obj.d
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
-  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/source/shell/../applib
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/shell/../applib
   OBJECT_DIR = source\shell\CMakeFiles\shell.dir
   OBJECT_FILE_DIR = source\shell\CMakeFiles\shell.dir
 
@@ -488,10 +558,10 @@ build source/shell/CMakeFiles/shell.dir/main.c.obj: C_COMPILER__shell_Debug E$:/
 # Link the executable source\shell\shell
 
 build source/shell/shell: C_EXECUTABLE_LINKER__shell_Debug source/shell/CMakeFiles/shell.dir/main.c.obj || source/applib/libapp.a
-  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
   LINK_FLAGS = -m elf_i386 -T E:/ubuntu/diy-x86os/start/start/source/shell/link.lds -L E:/ubuntu/diy-x86os/start/start/build/source/applib/ -lapp -L E:/ubuntu/diy-x86os/start/start/build/../../newlib/i686-elf/lib -lm -lc
   OBJECT_DIR = source\shell\CMakeFiles\shell.dir
-  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\shell && x86_64-elf-objcopy -S shell.elf E:/ubuntu/diy-x86os/start/start/../../image/shell.elf && x86_64-elf-objdump -x -d -S -m i386 E:/ubuntu/diy-x86os/start/start/build/source/shell/shell.elf > shell_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/shell/shell.elf > shell_elf.txt"
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\shell && x86_64-elf-objcopy -S shell.elf E:/ubuntu/diy-x86os/start/start/../../image/shell.elf && x86_64-elf-objdump -x -d -m i386 E:/ubuntu/diy-x86os/start/start/build/source/shell/shell.elf > shell_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/shell/shell.elf > shell_elf.txt"
   PRE_LINK = cd .
   TARGET_FILE = source\shell\shell
   TARGET_PDB = shell.dbg
@@ -521,17 +591,187 @@ build source/shell/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build source/shell/rebuild_cache: phony source/shell/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# E:/ubuntu/diy-x86os/start/start/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target init
+
+
+#############################################
+# Order-only phony target for init
+
+build cmake_object_order_depends_target_init: phony || source/init/CMakeFiles/init.dir
+
+build source/init/CMakeFiles/init.dir/__/applib/crt0.S.obj: ASM_COMPILER__init_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/crt0.S || cmake_object_order_depends_target_init
+  DEP_FILE = source\init\CMakeFiles\init.dir\__\applib\crt0.S.obj.d
+  FLAGS = -m32 -g  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/init/../applib
+  OBJECT_DIR = source\init\CMakeFiles\init.dir
+  OBJECT_FILE_DIR = source\init\CMakeFiles\init.dir\__\applib
+
+build source/init/CMakeFiles/init.dir/__/applib/cstart.c.obj: C_COMPILER__init_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/cstart.c || cmake_object_order_depends_target_init
+  DEP_FILE = source\init\CMakeFiles\init.dir\__\applib\cstart.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/init/../applib
+  OBJECT_DIR = source\init\CMakeFiles\init.dir
+  OBJECT_FILE_DIR = source\init\CMakeFiles\init.dir\__\applib
+
+build source/init/CMakeFiles/init.dir/__/applib/lib_syscall.c.obj: C_COMPILER__init_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/lib_syscall.c || cmake_object_order_depends_target_init
+  DEP_FILE = source\init\CMakeFiles\init.dir\__\applib\lib_syscall.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/init/../applib
+  OBJECT_DIR = source\init\CMakeFiles\init.dir
+  OBJECT_FILE_DIR = source\init\CMakeFiles\init.dir\__\applib
+
+build source/init/CMakeFiles/init.dir/main.c.obj: C_COMPILER__init_Debug E$:/ubuntu/diy-x86os/start/start/source/init/main.c || cmake_object_order_depends_target_init
+  DEP_FILE = source\init\CMakeFiles\init.dir\main.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/init/../applib
+  OBJECT_DIR = source\init\CMakeFiles\init.dir
+  OBJECT_FILE_DIR = source\init\CMakeFiles\init.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target init
+
+
+#############################################
+# Link the executable source\init\init
+
+build source/init/init: C_EXECUTABLE_LINKER__init_Debug source/init/CMakeFiles/init.dir/__/applib/crt0.S.obj source/init/CMakeFiles/init.dir/__/applib/cstart.c.obj source/init/CMakeFiles/init.dir/__/applib/lib_syscall.c.obj source/init/CMakeFiles/init.dir/main.c.obj
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  LINK_FLAGS = -m elf_i386 -T E:/ubuntu/diy-x86os/start/start/source/init/link.lds -L E:/ubuntu/diy-x86os/start/start/build/../../newlib/i686-elf/lib -lm -lc
+  OBJECT_DIR = source\init\CMakeFiles\init.dir
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\init && x86_64-elf-objcopy -S init.elf E:/ubuntu/diy-x86os/start/start/../../image/init.elf && x86_64-elf-objdump -x -d -m i386 E:/ubuntu/diy-x86os/start/start/build/source/init/init.elf > init_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/init/init.elf > init_elf.txt"
+  PRE_LINK = cd .
+  TARGET_FILE = source\init\init
+  TARGET_PDB = init.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build source/init/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\init && "C:\Program Files (x86)\CMake\bin\cmake-gui.exe" -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build source/init/edit_cache: phony source/init/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build source/init/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\init && "C:\Program Files (x86)\CMake\bin\cmake.exe" --regenerate-during-build -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build source/init/rebuild_cache: phony source/init/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# E:/ubuntu/diy-x86os/start/start/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target loop
+
+
+#############################################
+# Order-only phony target for loop
+
+build cmake_object_order_depends_target_loop: phony || source/loop/CMakeFiles/loop.dir
+
+build source/loop/CMakeFiles/loop.dir/__/applib/crt0.S.obj: ASM_COMPILER__loop_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/crt0.S || cmake_object_order_depends_target_loop
+  DEP_FILE = source\loop\CMakeFiles\loop.dir\__\applib\crt0.S.obj.d
+  FLAGS = -m32 -g  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/loop/../applib
+  OBJECT_DIR = source\loop\CMakeFiles\loop.dir
+  OBJECT_FILE_DIR = source\loop\CMakeFiles\loop.dir\__\applib
+
+build source/loop/CMakeFiles/loop.dir/__/applib/cstart.c.obj: C_COMPILER__loop_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/cstart.c || cmake_object_order_depends_target_loop
+  DEP_FILE = source\loop\CMakeFiles\loop.dir\__\applib\cstart.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/loop/../applib
+  OBJECT_DIR = source\loop\CMakeFiles\loop.dir
+  OBJECT_FILE_DIR = source\loop\CMakeFiles\loop.dir\__\applib
+
+build source/loop/CMakeFiles/loop.dir/__/applib/lib_syscall.c.obj: C_COMPILER__loop_Debug E$:/ubuntu/diy-x86os/start/start/source/applib/lib_syscall.c || cmake_object_order_depends_target_loop
+  DEP_FILE = source\loop\CMakeFiles\loop.dir\__\applib\lib_syscall.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/loop/../applib
+  OBJECT_DIR = source\loop\CMakeFiles\loop.dir
+  OBJECT_FILE_DIR = source\loop\CMakeFiles\loop.dir\__\applib
+
+build source/loop/CMakeFiles/loop.dir/main.c.obj: C_COMPILER__loop_Debug E$:/ubuntu/diy-x86os/start/start/source/loop/main.c || cmake_object_order_depends_target_loop
+  DEP_FILE = source\loop\CMakeFiles\loop.dir\main.c.obj.d
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  INCLUDES = -IE:/ubuntu/diy-x86os/start/start/source -IE:/ubuntu/diy-x86os/start/start/source/kernel/include -IE:/ubuntu/diy-x86os/start/start/../newlib/i686-elf/include -IE:/ubuntu/diy-x86os/start/start/source/loop/../applib
+  OBJECT_DIR = source\loop\CMakeFiles\loop.dir
+  OBJECT_FILE_DIR = source\loop\CMakeFiles\loop.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target loop
+
+
+#############################################
+# Link the executable source\loop\loop
+
+build source/loop/loop: C_EXECUTABLE_LINKER__loop_Debug source/loop/CMakeFiles/loop.dir/__/applib/crt0.S.obj source/loop/CMakeFiles/loop.dir/__/applib/cstart.c.obj source/loop/CMakeFiles/loop.dir/__/applib/lib_syscall.c.obj source/loop/CMakeFiles/loop.dir/main.c.obj
+  FLAGS = -g -c -O0 -m32 -DRELEASE -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -g
+  LINK_FLAGS = -m elf_i386 -T E:/ubuntu/diy-x86os/start/start/source/loop/link.lds -L E:/ubuntu/diy-x86os/start/start/build/../../newlib/i686-elf/lib -lm -lc
+  OBJECT_DIR = source\loop\CMakeFiles\loop.dir
+  POST_BUILD = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\loop && x86_64-elf-objcopy -S loop.elf E:/ubuntu/diy-x86os/start/start/../../image/loop.elf && x86_64-elf-objdump -x -d -m i386 E:/ubuntu/diy-x86os/start/start/build/source/loop/loop.elf > loop_dis.txt && x86_64-elf-readelf -a E:/ubuntu/diy-x86os/start/start/build/source/loop/loop.elf > loop_elf.txt"
+  PRE_LINK = cd .
+  TARGET_FILE = source\loop\loop
+  TARGET_PDB = loop.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build source/loop/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\loop && "C:\Program Files (x86)\CMake\bin\cmake-gui.exe" -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build source/loop/edit_cache: phony source/loop/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build source/loop/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D E:\ubuntu\diy-x86os\start\start\build\source\loop && "C:\Program Files (x86)\CMake\bin\cmake.exe" --regenerate-during-build -SE:\ubuntu\diy-x86os\start\start -BE:\ubuntu\diy-x86os\start\start\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build source/loop/rebuild_cache: phony source/loop/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
 # Target aliases.
 
 build app: phony source/applib/libapp.a
 
 build boot: phony source/boot/boot
 
+build init: phony source/init/init
+
 build kernel: phony source/kernel/kernel
 
 build libapp.a: phony source/applib/libapp.a
 
 build loader: phony source/loader/loader
+
+build loop: phony source/loop/loop
 
 build shell: phony source/shell/shell
 
@@ -543,7 +783,7 @@ build shell: phony source/shell/shell
 #############################################
 # Folder: E:/ubuntu/diy-x86os/start/start/build
 
-build all: phony source/boot/all source/loader/all source/kernel/all source/applib/all source/shell/all
+build all: phony source/boot/all source/loader/all source/kernel/all source/applib/all source/shell/all source/init/all source/loop/all
 
 # =============================================================================
 
@@ -562,6 +802,13 @@ build source/boot/all: phony source/boot/boot
 # =============================================================================
 
 #############################################
+# Folder: E:/ubuntu/diy-x86os/start/start/build/source/init
+
+build source/init/all: phony source/init/init
+
+# =============================================================================
+
+#############################################
 # Folder: E:/ubuntu/diy-x86os/start/start/build/source/kernel
 
 build source/kernel/all: phony source/kernel/kernel
@@ -572,6 +819,13 @@ build source/kernel/all: phony source/kernel/kernel
 # Folder: E:/ubuntu/diy-x86os/start/start/build/source/loader
 
 build source/loader/all: phony source/loader/loader
+
+# =============================================================================
+
+#############################################
+# Folder: E:/ubuntu/diy-x86os/start/start/build/source/loop
+
+build source/loop/all: phony source/loop/loop
 
 # =============================================================================
 
@@ -592,14 +846,14 @@ build source/shell/all: phony source/shell/shell
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../source/applib/CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt ../source/shell/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../source/applib/CMakeLists.txt ../source/boot/CMakeLists.txt ../source/init/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt ../source/loop/CMakeLists.txt ../source/shell/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../source/applib/CMakeLists.txt ../source/boot/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt ../source/shell/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../source/applib/CMakeLists.txt ../source/boot/CMakeLists.txt ../source/init/CMakeLists.txt ../source/kernel/CMakeLists.txt ../source/loader/CMakeLists.txt ../source/loop/CMakeLists.txt ../source/shell/CMakeLists.txt C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeASMInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-ASM.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files$ (x86)/CMake/share/cmake-3.23/Modules/Platform/Generic.cmake CMakeCache.txt CMakeFiles/3.23.1/CMakeASMCompiler.cmake CMakeFiles/3.23.1/CMakeCCompiler.cmake CMakeFiles/3.23.1/CMakeSystem.cmake: phony
 
 
 #############################################

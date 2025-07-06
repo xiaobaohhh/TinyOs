@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-05-30 16:07:56
  * @LastEditors: xiaobao xiaobaogenji@163.com
- * @LastEditTime: 2025-06-11 12:24:16
+ * @LastEditTime: 2025-06-23 16:57:30
  * @FilePath: \start\source\kernel\include\core\task.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,13 +12,13 @@
 #include "cpu/cpu.h"
 #include "comm/types.h"
 #include "tools/list.h"
-
+#include "fs/file.h"
 #define TASK_NAME_SIZE 32
 #define TASK_TIME_SLICE_DEFAULT 10
 
 #define TASK_NEED_RESCHEDULE 1
 #define TASK_NOT_NEED_RESCHEDULE 0
-
+#define TASK_OFILE_NR 128
 typedef struct _task_args_t
 {
     uint32_t ret_addr;
@@ -36,6 +36,7 @@ typedef struct _task_t
         TASK_SUSPEND,
         TASK_WAITTING,
         TASK_STOP,
+        TASK_ZOMBIE,
     }state;
 
     enum{
@@ -43,6 +44,8 @@ typedef struct _task_t
         TASK_USER       // 用户任务
     }task_type;
 
+    uint32_t heap_start;
+    uint32_t heap_end;
     int pid;
 
     struct _task_t * parent;
@@ -55,11 +58,21 @@ typedef struct _task_t
     list_node_t wait_node;
     uint32_t esp0_start;
     tss_t tss;
+    int is_first_run;
+
+    int status;
+    file_t * file_table[TASK_OFILE_NR];
 }task_t;
 
 int kernel_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp);
 int user_task_init(task_t *task,const char *name,uint32_t entry,uint32_t esp);
 void task_time_tick();
+
+
+int task_alloc_fd(file_t *file);
+void task_remove_fd(int fd);
+file_t * task_file(int fd);
+
 typedef struct _task_manager_t
 {
 
@@ -103,6 +116,7 @@ void task_set_sleep(task_t *task,uint32_t ticks);
 void task_set_wakeup(task_t *task);
 
 static void idle_task_entry(void);
+void schedule_switch(void);
 void do_schedule_switch(void);
 void mmu_set_page_dir_task(task_t * to_task);
 
@@ -111,5 +125,7 @@ void schedule_next_task();
 int sys_getpid();
 int sys_fork();
 int sys_execve(char *name,char **argv,char **env);
+void sys_exit(int status);
+int sys_wait(int * status);
 #endif
 

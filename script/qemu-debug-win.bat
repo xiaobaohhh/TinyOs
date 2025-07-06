@@ -10,4 +10,4 @@ start qemu-system-i386 ^
   -D E:\ubuntu\diy-x86os\start\start\qemu-debug.log ^
   -no-shutdown ^
   -no-reboot ^
-  -no-kvm ^
+  -no-kvm ^   

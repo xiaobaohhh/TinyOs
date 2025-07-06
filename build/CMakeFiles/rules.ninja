@@ -101,7 +101,7 @@ rule C_COMPILER__kernel_Debug
 # Rule for linking C executable.
 
 rule C_EXECUTABLE_LINKER__kernel_Debug
-  command = cmd.exe /C "$PRE_LINK && x86_64-elf-ld $in -m elf_i386  -T E:/ubuntu/diy-x86os/start/start/source/kernel/kernel.lds -o E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf && $POST_BUILD"
+  command = cmd.exe /C "$PRE_LINK && x86_64-elf-ld $in -m elf_i386  -T E:/ubuntu/diy-x86os/start/start/source/kernel/kernel.lds -L E:/ubuntu/diy-x86os/start/start/build/source/applib/ -o E:/ubuntu/diy-x86os/start/start/build/source/kernel/kernel.elf && $POST_BUILD"
   description = Linking C executable $TARGET_FILE
   restat = $RESTAT
 
@@ -150,6 +150,64 @@ rule C_COMPILER__shell_Debug
 
 rule C_EXECUTABLE_LINKER__shell_Debug
   command = cmd.exe /C "$PRE_LINK && x86_64-elf-ld $in -m elf_i386 -T E:/ubuntu/diy-x86os/start/start/source/shell/link.lds -L E:/ubuntu/diy-x86os/start/start/build/source/applib/ -lapp -L E:/ubuntu/diy-x86os/start/start/build/../../newlib/i686-elf/lib -lm -lc -o E:/ubuntu/diy-x86os/start/start/build/source/shell/shell.elf && $POST_BUILD"
+  description = Linking C executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling ASM files.
+
+rule ASM_COMPILER__init_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = E:\BaiduNetdiskDownload\windows\x86_64-elf-tools-windows\bin\x86_64-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building ASM object $out
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__init_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = E:\BaiduNetdiskDownload\windows\x86_64-elf-tools-windows\bin\x86_64-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C executable.
+
+rule C_EXECUTABLE_LINKER__init_Debug
+  command = cmd.exe /C "$PRE_LINK && x86_64-elf-ld $in -m elf_i386 -T E:/ubuntu/diy-x86os/start/start/source/init/link.lds -L E:/ubuntu/diy-x86os/start/start/build/../../newlib/i686-elf/lib -lm -lc -o E:/ubuntu/diy-x86os/start/start/build/source/init/init.elf && $POST_BUILD"
+  description = Linking C executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling ASM files.
+
+rule ASM_COMPILER__loop_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = E:\BaiduNetdiskDownload\windows\x86_64-elf-tools-windows\bin\x86_64-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building ASM object $out
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__loop_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = E:\BaiduNetdiskDownload\windows\x86_64-elf-tools-windows\bin\x86_64-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C executable.
+
+rule C_EXECUTABLE_LINKER__loop_Debug
+  command = cmd.exe /C "$PRE_LINK && x86_64-elf-ld $in -m elf_i386 -T E:/ubuntu/diy-x86os/start/start/source/loop/link.lds -L E:/ubuntu/diy-x86os/start/start/build/../../newlib/i686-elf/lib -lm -lc -o E:/ubuntu/diy-x86os/start/start/build/source/loop/loop.elf && $POST_BUILD"
   description = Linking C executable $TARGET_FILE
   restat = $RESTAT
 

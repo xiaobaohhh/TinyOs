@@ -8,7 +8,12 @@
         "task.h": "c",
         "types.h": "c",
         "fcntl.h": "c",
-        "_default_fcntl.h": "c"
+        "_default_fcntl.h": "c",
+        "boot_info.h": "c",
+        "cpu_instr.h": "c",
+        "klib.h": "c",
+        "log.h": "c",
+        "disk.h": "c"
     },
     "serialMonitor.defaultConnection": "tcp://localhost:23456",
     "serialMonitor.autoConnect": true

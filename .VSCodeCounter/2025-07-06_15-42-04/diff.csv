@@ -1,0 +1,33 @@
+"filename", "language", "C", "CMake", "x86 and x86_64 Assembly", "C++", "comment", "blank", "total"
+"e:\ubuntu\diy-x86os\start\start\source\applib\lib_syscall.c", "C", 59, 0, 0, 0, 0, 6, 65
+"e:\ubuntu\diy-x86os\start\start\source\applib\lib_syscall.h", "C", 17, 0, 0, 0, 0, 4, 21
+"e:\ubuntu\diy-x86os\start\start\source\comm\cpu_instr.h", "C", 4, 0, 0, 0, 0, 3, 7
+"e:\ubuntu\diy-x86os\start\start\source\init\CMakeLists.txt", "CMake", 0, 20, 0, 0, 0, 5, 25
+"e:\ubuntu\diy-x86os\start\start\source\init\main.c", "C", 15, 0, 0, 0, 8, 4, 27
+"e:\ubuntu\diy-x86os\start\start\source\init\main.h", "C", 23, 0, 0, 0, 8, 12, 43
+"e:\ubuntu\diy-x86os\start\start\source\kernel\core\memory.c", "C", -1, 0, 0, 0, 1, 0, 0
+"e:\ubuntu\diy-x86os\start\start\source\kernel\core\syscall.c", "C", 5, 0, 0, 0, 0, 5, 10
+"e:\ubuntu\diy-x86os\start\start\source\kernel\core\task.c", "C", 2, 0, 0, 0, 2, 1, 5
+"e:\ubuntu\diy-x86os\start\start\source\kernel\cpu\irq.c", "C", 22, 0, 0, 0, 0, 1, 23
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\dev.c", "C", 2, 0, 0, 0, 0, 0, 2
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\disk.c", "C", 238, 0, 0, 0, 6, 21, 265
+"e:\ubuntu\diy-x86os\start\start\source\kernel\dev\tty.c", "C", 16, 0, 0, 0, 0, 1, 17
+"e:\ubuntu\diy-x86os\start\start\source\kernel\fs\devfs\devfs.c", "C", 5, 0, 0, 0, 0, 1, 6
+"e:\ubuntu\diy-x86os\start\start\source\kernel\fs\fatfs\fatfs.c", "C", 628, 0, 0, 0, 25, 69, 722
+"e:\ubuntu\diy-x86os\start\start\source\kernel\fs\fs.c", "C", 31, 0, 0, 0, 0, 2, 33
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\syscall.h", "C++", 0, 0, 0, 5, 0, 0, 5
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\cpu\irq.h", "C++", 0, 0, 0, 2, 0, 0, 2
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\dev.h", "C++", 0, 0, 0, 2, 0, 0, 2
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\disk.h", "C", 83, 0, 0, 0, 0, 21, 104
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\tty.h", "C++", 0, 0, 0, 1, 0, -1, 0
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\fs\fatfs\fatfs.h", "C++", 0, 0, 0, 72, 3, 16, 91
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\fs\file.h", "C", 5, 0, 0, 0, 0, 1, 6
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\fs\fs.h", "C", 17, 0, 0, 0, 0, 4, 21
+"e:\ubuntu\diy-x86os\start\start\source\kernel\include\os_cfg.h", "C++", 0, 0, 0, 1, 0, 1, 2
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\lib_syscall.c", "C", 150, 0, 0, 0, 0, 12, 162
+"e:\ubuntu\diy-x86os\start\start\source\kernel\init\start.S", "x86 and x86_64 Assembly", 0, 0, 28, 0, 0, 6, 34
+"e:\ubuntu\diy-x86os\start\start\source\loop\CMakeLists.txt", "CMake", 0, 20, 0, 0, 0, 5, 25
+"e:\ubuntu\diy-x86os\start\start\source\loop\main.c", "C", 58, 0, 0, 0, 8, 4, 70
+"e:\ubuntu\diy-x86os\start\start\source\loop\main.h", "C", 23, 0, 0, 0, 8, 12, 43
+"e:\ubuntu\diy-x86os\start\start\source\shell\main.c", "C", 176, 0, 0, 0, 0, 2, 178
+"Total", "-", 1578, 40, 28, 83, 69, 218, 2016

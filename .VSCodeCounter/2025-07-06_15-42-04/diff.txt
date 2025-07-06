@@ -1,0 +1,80 @@
+Date : 2025-07-06 15:42:04
+Directory : e:\ubuntu\diy-x86os\start\start\source
+Total : 31 files,  1729 codes, 69 comments, 218 blanks, all 2016 lines
+
+Languages
++-------------------------+------------+------------+------------+------------+------------+
+| language                | files      | code       | comment    | blank      | total      |
++-------------------------+------------+------------+------------+------------+------------+
+| C                       |         22 |      1,578 |         66 |        186 |      1,830 |
+| C++                     |          6 |         83 |          3 |         16 |        102 |
+| CMake                   |          2 |         40 |          0 |         10 |         50 |
+| x86 and x86_64 Assembly |          1 |         28 |          0 |          6 |         34 |
++-------------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                   | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                      |         31 |      1,729 |         69 |        218 |      2,016 |
+| applib                                                                 |          2 |         76 |          0 |         10 |         86 |
+| comm                                                                   |          1 |          4 |          0 |          3 |          7 |
+| init                                                                   |          3 |         58 |         16 |         21 |         95 |
+| kernel                                                                 |         21 |      1,314 |         37 |        161 |      1,512 |
+| kernel\core                                                            |          3 |          6 |          3 |          6 |         15 |
+| kernel\cpu                                                             |          1 |         22 |          0 |          1 |         23 |
+| kernel\dev                                                             |          3 |        256 |          6 |         22 |        284 |
+| kernel\fs                                                              |          3 |        664 |         25 |         72 |        761 |
+| kernel\fs (Files)                                                      |          1 |         31 |          0 |          2 |         33 |
+| kernel\fs\devfs                                                        |          1 |          5 |          0 |          1 |          6 |
+| kernel\fs\fatfs                                                        |          1 |        628 |         25 |         69 |        722 |
+| kernel\include                                                         |          9 |        188 |          3 |         42 |        233 |
+| kernel\include (Files)                                                 |          1 |          1 |          0 |          1 |          2 |
+| kernel\include\core                                                    |          1 |          5 |          0 |          0 |          5 |
+| kernel\include\cpu                                                     |          1 |          2 |          0 |          0 |          2 |
+| kernel\include\dev                                                     |          3 |         86 |          0 |         20 |        106 |
+| kernel\include\fs                                                      |          3 |         94 |          3 |         21 |        118 |
+| kernel\include\fs (Files)                                              |          2 |         22 |          0 |          5 |         27 |
+| kernel\include\fs\fatfs                                                |          1 |         72 |          3 |         16 |         91 |
+| kernel\init                                                            |          2 |        178 |          0 |         18 |        196 |
+| loop                                                                   |          3 |        101 |         16 |         21 |        138 |
+| shell                                                                  |          1 |        176 |          0 |          2 |        178 |
++------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------+-------------------------+------------+------------+------------+------------+
+| filename                                                               | language                | code       | comment    | blank      | total      |
++------------------------------------------------------------------------+-------------------------+------------+------------+------------+------------+
+| e:\ubuntu\diy-x86os\start\start\source\applib\lib_syscall.c            | C                       |         59 |          0 |          6 |         65 |
+| e:\ubuntu\diy-x86os\start\start\source\applib\lib_syscall.h            | C                       |         17 |          0 |          4 |         21 |
+| e:\ubuntu\diy-x86os\start\start\source\comm\cpu_instr.h                | C                       |          4 |          0 |          3 |          7 |
+| e:\ubuntu\diy-x86os\start\start\source\init\CMakeLists.txt             | CMake                   |         20 |          0 |          5 |         25 |
+| e:\ubuntu\diy-x86os\start\start\source\init\main.c                     | C                       |         15 |          8 |          4 |         27 |
+| e:\ubuntu\diy-x86os\start\start\source\init\main.h                     | C                       |         23 |          8 |         12 |         43 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\memory.c            | C                       |         -1 |          1 |          0 |          0 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\syscall.c           | C                       |          5 |          0 |          5 |         10 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\core\task.c              | C                       |          2 |          2 |          1 |          5 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\cpu\irq.c                | C                       |         22 |          0 |          1 |         23 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\dev\dev.c                | C                       |          2 |          0 |          0 |          2 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\dev\disk.c               | C                       |        238 |          6 |         21 |        265 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\dev\tty.c                | C                       |         16 |          0 |          1 |         17 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\fs\devfs\devfs.c         | C                       |          5 |          0 |          1 |          6 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\fs\fatfs\fatfs.c         | C                       |        628 |         25 |         69 |        722 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\fs\fs.c                  | C                       |         31 |          0 |          2 |         33 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\core\syscall.h   | C++                     |          5 |          0 |          0 |          5 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\cpu\irq.h        | C++                     |          2 |          0 |          0 |          2 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\dev.h        | C++                     |          2 |          0 |          0 |          2 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\disk.h       | C                       |         83 |          0 |         21 |        104 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\dev\tty.h        | C++                     |          1 |          0 |         -1 |          0 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\fs\fatfs\fatfs.h | C++                     |         72 |          3 |         16 |         91 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\fs\file.h        | C                       |          5 |          0 |          1 |          6 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\fs\fs.h          | C                       |         17 |          0 |          4 |         21 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\include\os_cfg.h         | C++                     |          1 |          0 |          1 |          2 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\init\lib_syscall.c       | C                       |        150 |          0 |         12 |        162 |
+| e:\ubuntu\diy-x86os\start\start\source\kernel\init\start.S             | x86 and x86_64 Assembly |         28 |          0 |          6 |         34 |
+| e:\ubuntu\diy-x86os\start\start\source\loop\CMakeLists.txt             | CMake                   |         20 |          0 |          5 |         25 |
+| e:\ubuntu\diy-x86os\start\start\source\loop\main.c                     | C                       |         58 |          8 |          4 |         70 |
+| e:\ubuntu\diy-x86os\start\start\source\loop\main.h                     | C                       |         23 |          8 |         12 |         43 |
+| e:\ubuntu\diy-x86os\start\start\source\shell\main.c                    | C                       |        176 |          0 |          2 |        178 |
+| Total                                                                  |                         |      1,729 |         69 |        218 |      2,016 |
++------------------------------------------------------------------------+-------------------------+------------+------------+------------+------------+
